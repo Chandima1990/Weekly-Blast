@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.deploySubpath": "",
+    "appService.defaultWebAppToDeploy": "/subscriptions/7f0f2d1f-0514-43f1-ad75-c19acbd3da56/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/sprayrunner0-admin"
+}
