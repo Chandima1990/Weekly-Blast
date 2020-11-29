@@ -26,14 +26,14 @@ export class UserManagementService {
     //headerList.push({ Key: "", value: "" });
 
     console.log("Done");
-    this.apiService.get(`AccountGet`, headerList, "?emp=")
-      .subscribe((data) => {
-        this.user = data;
-        this.rowData = data;
-        // this.user.UserList.forEach(value => {
-        //     this.newData.push({ Name: value.FirstName + value.LastName, LoginDetails: value.Email });
-        // })
-        this.rowData = this.newData;
-      });
+    // this.apiService.get(`AccountGet`, headerList, "?emp=")
+    //   .subscribe((data) => {
+    //     this.user = data;
+    //     this.rowData = data;
+    //     // this.user.UserList.forEach(value => {
+    //     //     this.newData.push({ Name: value.FirstName + value.LastName, LoginDetails: value.Email });
+    //     // })
+    //     this.rowData = this.newData;
+    //   });
   }
 }

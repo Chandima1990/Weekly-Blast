@@ -13,7 +13,7 @@ import { ClosingComponent } from './main/closing/closing.component';
 
 
 const routes: Routes = [
-  { path: '', component: TeamsComponent },
+  { path: '', component: GamesComponent },
   { path: 'games', component: GamesComponent },
   { path: 'closing', component: ClosingComponent },
   { path: 'teams', component: TeamsComponent },

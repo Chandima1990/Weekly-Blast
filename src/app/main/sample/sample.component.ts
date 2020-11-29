@@ -63,15 +63,15 @@ export class SampleComponent {
         //     .append("sitename", "https://yakr.azurewebsites.net")
         //     .append("Ocp-Apim-Subscription-Key", "0a8ecd9b068841859834cbfaf272a933");
 
-        this.apiService.get(`https://xataapi.azurewebsites.net/api/get/v1.0.0/AccountGet`, headerList, "")
-            .subscribe((data) => {
-                this.user = data;
-                this.rowData = data;
-                // this.user.UserList.forEach(value => {
-                //     this.newData.push({ Name: value.FirstName + value.LastName, LoginDetails: value.Email });
-                // })
-                this.rowData = this.newData;
-            });
+        // this.apiService.get(`https://xataapi.azurewebsites.net/api/get/v1.0.0/AccountGet`, headerList, "")
+        //     .subscribe((data) => {
+        //         this.user = data;
+        //         this.rowData = data;
+        //         // this.user.UserList.forEach(value => {
+        //         //     this.newData.push({ Name: value.FirstName + value.LastName, LoginDetails: value.Email });
+        //         // })
+        //         this.rowData = this.newData;
+        //     });
 
     }
 

@@ -55,32 +55,31 @@ export class AppComponent implements OnInit, OnDestroy {
     ) {
         // Get default navigation
         this.navigation = navigation;
-
+        
         // Register the navigation to the service
         this._fuseNavigationService.register('main', this.navigation);
-
+        
         // Set the main navigation as our current navigation
         this._fuseNavigationService.setCurrentNavigation('main');
         
-        this._fuseNavigationService.removeNavigationItem('custom-function');
         // Add languages
         this._translateService.addLangs(['en', 'tr']);
-
+        
         // Set the default language
         this._translateService.setDefaultLang('en');
-
+        
         // Set the navigation translations
         this._fuseTranslationLoaderService.loadTranslations(navigationEnglish, navigationTurkish);
-
+        
         // Use a language
         this._translateService.use('en');
-
+        
         /**
          * ----------------------------------------------------------------------------------------------------
          * ngxTranslate Fix Start
          * ----------------------------------------------------------------------------------------------------
          */
-
+        
         /**
          * If you are using a language other than the default one, i.e. Turkish in this case,
          * you may encounter an issue where some of the components are not actually being
@@ -90,18 +89,18 @@ export class AppComponent implements OnInit, OnDestroy {
          * are moving the multi language implementation over to the Angular's core language
          * service.
          **/
-
+        
         // Set the default language to 'en' and then back to 'tr'.
         // '.use' cannot be used here as ngxTranslate won't switch to a language that's already
         // been selected and there is no way to force it, so we overcome the issue by switching
         // the default language back and forth.
         /**
          setTimeout(() => {
-            this._translateService.setDefaultLang('en');
-            this._translateService.setDefaultLang('tr');
+             this._translateService.setDefaultLang('en');
+             this._translateService.setDefaultLang('tr');
          });
          */
-
+        
         /**
          * ----------------------------------------------------------------------------------------------------
          * ngxTranslate Fix End
@@ -112,27 +111,27 @@ export class AppComponent implements OnInit, OnDestroy {
         if (this._platform.ANDROID || this._platform.IOS) {
             this.document.body.classList.add('is-mobile');
         }
-
+        
         // Set the private defaults
         this._unsubscribeAll = new Subject();
         
     }
-
+    
     // -----------------------------------------------------------------------------------------------------
     // @ Lifecycle hooks
     // -----------------------------------------------------------------------------------------------------
-
+    
     /**
      * On init
      */
     ngOnInit(): void {
         // Subscribe to config changes
         this._fuseConfigService.config
-            .pipe(takeUntil(this._unsubscribeAll))
-            .subscribe((config) => {
-
-                this.fuseConfig = config;
-
+        .pipe(takeUntil(this._unsubscribeAll))
+        .subscribe((config) => {
+            
+            this.fuseConfig = config;
+            
                 // Boxed
                 if (this.fuseConfig.layout.width === 'boxed') {
                     this.document.body.classList.add('boxed');
@@ -140,31 +139,32 @@ export class AppComponent implements OnInit, OnDestroy {
                 else {
                     this.document.body.classList.remove('boxed');
                 }
-
+                
                 // Color theme - Use normal for loop for IE11 compatibility
                 for (let i = 0; i < this.document.body.classList.length; i++) {
                     const className = this.document.body.classList[i];
-
+                    
                     if (className.startsWith('theme-')) {
                         this.document.body.classList.remove(className);
                     }
                 }
-
+                
                 this.document.body.classList.add(this.fuseConfig.colorTheme);
             });
-
-
-        // let loggedinuser = this.cookieService_login.get("LoggedInUser");
-        // if (loggedinuser == "" ) {
-        //     this.router.navigate(['/login']);
-        // }
-        //console.log(loggedinuser);
-    }
-
-    /**
-     * On destroy
-     */
-    ngOnDestroy(): void {
+            
+            
+            // let loggedinuser = this.cookieService_login.get("LoggedInUser");
+            // if (loggedinuser == "" ) {
+                //     this.router.navigate(['/login']);
+                // }
+                //console.log(loggedinuser);
+                this._fuseNavigationService.removeNavigationItem('custom-function');
+            }
+            
+            /**
+             * On destroy
+             */
+            ngOnDestroy(): void {
         // Unsubscribe from all subscriptions
         this._unsubscribeAll.next();
         this._unsubscribeAll.complete();

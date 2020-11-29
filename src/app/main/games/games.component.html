@@ -1,3 +1,109 @@
-<div class="p-24 content">
-    
+<div class="p-24 content page-layout simple left-sidebar">
+    <!-- <div fxLayout="row" fxLayoutAlign="center center"> -->
+    <!-- sidebar -->
+    <fuse-sidebar name="scoreboard" lockedOpen="gt-md" folded='true'>
+        <button mat-fab (click)="toggleBar()">
+            <mat-icon>menu</mat-icon>
+        </button>
+        <mat-card class="mb-8" *ngFor="let team of teamsData">
+            <mat-card-header>
+                <mat-card-title>
+                    {{team.team}}
+                </mat-card-title>
+                <mat-card-subtitle>
+                    Score: {{team.score}}
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div *ngFor="let member of team.members">
+                    <div fxLayout="row" fxLayoutAlign="space-between center">
+                        <div fxFlex>
+                            {{member.name}}
+                        </div>
+                        <div fxFlex>
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <button style="margin-bottom: 2px;" mat-raised-button matBadgeSize="large"
+                                    matBadgeColor="warn" [matBadge]="member.score" color="primary"
+                                    (click)="plus(member, team)">
+                                    +Score
+                                </button>
+                                <button style="margin-bottom: 2px;" mat-raised-button matBadgeSize="large"
+                                    matBadgeColor="warn" [matBadge]="member.score" color="warn"
+                                    (click)="minus(member, team)">
+                                    -Score
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </mat-card-content>
+
+        </mat-card>
+    </fuse-sidebar>
+
+    <!-- content start -->
+    <div fxLayout="column" fxLayoutAlign="start stretch" class="w-100-p">
+        <div>
+            <img width="200" src="/assets/images/custom/team/logo-large.jpg">
+            <h1>
+                Infosoft Weekly Blast
+            </h1>
+        </div>
+        <div fxFlex class="mt-8">
+            <div class="mb-8" *ngFor="let team of teamsData">
+                <!-- <div fxFlex>{{team.team}}</div> -->
+                <mat-card fxFlex class="w-100-p p-8">
+                    <mat-card-content>
+                        <h2>{{team.team}}</h2>
+                        <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" min="0" max="4"
+                            [value]="team.score">
+                        </mat-slider>
+                    </mat-card-content>
+                </mat-card>
+
+                <div fxFlex class="ml-16">
+                    <mat-icon *ngIf="team.score != maxGameSteps">flag</mat-icon>
+                    <mat-icon class="star" *ngIf="team.score == maxGameSteps">start</mat-icon>
+                </div>
+            </div>
+        </div>
+        <div fxFlex>
+            <mat-horizontal-stepper linear #stepper>
+                <mat-step *ngFor="let game of gameList">
+                    <ng-template matStepLabel>{{game.name}}</ng-template>
+                    <h3>{{game.name}}</h3>
+                    <mat-horizontal-stepper linear #stepper>
+                        <mat-step class="mat-step" *ngFor="let subgame of game.subteamgame">
+                            <div class="mb-8" fxLayout="column" fxLayoutAlign="start center">
+                                <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                                    <fuse-countdown fxFlex [eventDate]="stopTime"></fuse-countdown>
+                                    <button class="w-64 h-64 " fxFlex mat-fab>
+                                        <mat-icon class="fs-24">replay</mat-icon>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <ng-template matStepLabel>{{subgame.team}}</ng-template>
+                            <div fxLayout="row" fxLayoutAlign="space-between start">
+                                <img fxFlex [src]="subgame.image" alt="" class="mr-16">
+
+                                <video fxFlex width="800" height="500" controls class="mr-16" *ngIf="subgame.content"
+                                    src="/assets/images/custom/team/vid.mp4" width type="video/mp4">
+                                    Your browser does not support the video tag.
+                                </video>
+                                <div fxFlex>
+                                    <mat-list role="list">
+                                        <mat-list-item role="listitem" *ngFor="let rule of game.rules">
+                                            <mat-icon class="fs-24">gavel</mat-icon> {{rule}}
+                                        </mat-list-item>
+                                    </mat-list>
+                                </div>
+                            </div>
+                        </mat-step>
+                    </mat-horizontal-stepper>
+                </mat-step>
+            </mat-horizontal-stepper>
+        </div>
+    </div>
+    <!-- </div> -->
 </div>

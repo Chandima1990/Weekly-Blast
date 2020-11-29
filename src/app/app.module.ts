@@ -5,16 +5,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { MatButtonModule } from '@angular/material/button';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatListModule } from '@angular/material/list';
+
 import { MatIconModule } from '@angular/material/icon';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
 import 'hammerjs';
 
- 
+
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
+import { FuseCountdownModule, FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 
 import { fuseConfig } from 'app/fuse-config';
 
@@ -37,6 +44,8 @@ import { HomeModule } from './main/home/home.module';
 import { TeamsComponent } from './main/teams/teams.component';
 import { GamesComponent } from './main/games/games.component';
 import { ClosingComponent } from './main/closing/closing.component';
+import { MatDivider, MatDividerModule } from '@angular/material/divider';
+import { ScorePipe } from './main/games/score.pipe';
 
 
 @NgModule({
@@ -44,7 +53,7 @@ import { ClosingComponent } from './main/closing/closing.component';
         AppComponent,
         TeamsComponent,
         GamesComponent,
-        ClosingComponent,
+        ClosingComponent, ScorePipe
     ],
     imports: [
         BrowserModule,
@@ -61,13 +70,21 @@ import { ClosingComponent } from './main/closing/closing.component';
         MatButtonModule,
         MatIconModule,
         MatGridListModule,
-
+        MatCardModule,
+        MatDividerModule,
+        MatBadgeModule,
+        MatProgressBarModule,
+        MatSliderModule,
+        MatStepperModule,
+        MatListModule,
+        
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
         FuseProgressBarModule,
         FuseSharedModule,
         FuseSidebarModule,
         FuseThemeOptionsModule,
+        FuseCountdownModule,
 
         // App modules
         LayoutModule,
@@ -75,7 +92,7 @@ import { ClosingComponent } from './main/closing/closing.component';
         LoginModule,
         UserManagementModule,
         HomeModule,
-       //this is a test comment
+        //this is a test comment
         //AppRoutingModule
 
 
@@ -86,12 +103,12 @@ import { ClosingComponent } from './main/closing/closing.component';
     providers: [
         HttpClientModule,
         CookieService,
-        AuthGuard,
-        LoginService,{
+        AuthGuard, ScorePipe,
+        LoginService, {
             provide: HTTP_INTERCEPTORS,
             useClass: InterceptorService,
             multi: true
-          }
+        }
     ]
 })
 export class AppModule {

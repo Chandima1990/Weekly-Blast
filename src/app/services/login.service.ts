@@ -28,18 +28,18 @@ export class LoginService {
     headerList.push({ Key: "sitename", value: "http://sprayrunner-web.azurewebsites.net" });
 
 
-    this.apiService.post("AuthLogin", LoginBody, headerList).subscribe(data => {
-      if (!data.Code) {
-        this.router.navigate(['home']);
-        this.cookieService_login.set("LoggedInUser", btoa(escape(JSON.stringify(data))));
-      } else {
-        return new Promise((resolve, reject) => { resolve(false); })
-      }
+    // this.apiService.post("AuthLogin", LoginBody, headerList).subscribe(data => {
+    //   if (!data.Code) {
+    //     this.router.navigate(['home']);
+    //     this.cookieService_login.set("LoggedInUser", btoa(escape(JSON.stringify(data))));
+    //   } else {
+    //     return new Promise((resolve, reject) => { resolve(false); })
+    //   }
 
-    }, 
-    error => {
-      console.log("network Error!")
-    });
+    // }, 
+    // error => {
+    //   console.log("network Error!")
+    // });
 
 
   }

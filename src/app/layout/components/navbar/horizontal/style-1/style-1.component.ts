@@ -62,6 +62,7 @@ export class NavbarHorizontalStyle1Component implements OnInit, OnDestroy
             .subscribe((config) => {
                 this.fuseConfig = config;
             });
+            this._fuseNavigationService.removeNavigationItem('custom-function');
     }
 
     /**

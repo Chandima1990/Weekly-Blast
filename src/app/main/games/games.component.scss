@@ -1,1 +1,25 @@
-@import "src/app/app.component.scss"
+@import "src/app/app.component.scss";
+
+.star {
+    transform: scale(1.5);
+    color: yellow;
+    animation: zoominoutsinglefeatured 1s infinite;
+}
+
+@keyframes zoominoutsinglefeatured {
+    0% {
+        transform: scale(1, 1);
+    }
+    50% {
+        transform: scale(1.5, 1.5);
+    }
+    100% {
+        transform: scale(1, 1);
+    }
+}
+h2, .h2{
+    margin-bottom: 0px;
+}
+.fs-24 {
+        font-size: 24px !important; 
+    }
