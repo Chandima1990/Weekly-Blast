@@ -22,16 +22,15 @@ export class GamesComponent implements OnInit {
     constructor(private hc: HttpClient, private _fuseSidebarService: FuseSidebarService) {
 
         
-        this.onteamsData = new BehaviorSubject(JSON.parse(localStorage.getItem("scoreboard"))._value);
+        this.onteamsData = new BehaviorSubject(JSON.parse(localStorage.getItem("scoreboard")));
         this.gameList = GamesList.List;
     }
     
     ngOnInit() {
-        this.stopTime = new Date();
-        this.stopTime = new Date(this.stopTime.setSeconds(this.stopTime.getSeconds() + 90))
+    //    this.setTime()
         this.teamsData = JSON.parse(localStorage.getItem("scoreboard"))
 
-        if (this.teamsData.length == 0) {
+        if (!this.teamsData) {
 
             this.hc.get("/assets/images/custom/team/groupedByTeamPickerWheel.csv",
                 { responseType: "text" }).subscribe(data => {
@@ -91,6 +90,11 @@ export class GamesComponent implements OnInit {
         }
 
         return value;
+    }
+
+    setTime(seconds){
+        this.stopTime = new Date("2020-11-29 22:00:00");
+        //this.stopTime = new Date(this.stopTime.setSeconds(this.stopTime.getSeconds() + seconds))
     }
 
     plus(volunteer, vteam) {
