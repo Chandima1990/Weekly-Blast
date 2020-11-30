@@ -51,24 +51,16 @@
 
 .content {
     width: 100%;
-    // img {
-    //     width: 500px;
-    //     position: absolute;
-    //     clip: rect(10px, 480px, 195px, 20px);
-    //     top: -10px;
-    // }
-    // .mat-progress-bar {
-    //     height: 15px;
-    //     border-radius: 5px;
-    // }
-    .mat-raised-button{
+    .mat-raised-button {
         line-height: 25px;
     }
-
-    fuse-sidebar{
-        width: 450px;
-        max-width: 450px;
-        mat-icon{
+    .fs-24 {
+        font-size: 24px !important;
+    }
+    fuse-sidebar {
+        width: 420px;
+        max-width: 420px;
+        mat-icon {
             font-size: 24px;
         }
     }
@@ -81,18 +73,21 @@
         font-size: 40px;
     }
 
-    mat-card {
-        width: 400px;
-        i,
-        mat-icon {
-            font-size: 15px;
-            width: 24px;
-            height: 24px;
-            min-width: 24px;
-            min-height: 32px;
-            line-height: 14px;
+    .games {
+        mat-card {
+            width: 400px;
+            i,
+            mat-icon {
+                font-size: 15px;
+                width: 24px;
+                height: 24px;
+                min-width: 24px;
+                min-height: 32px;
+                line-height: 14px;
+            }
         }
     }
+
     ::ng-deep {
         .mat-slider.mat-slider-horizontal .mat-slider-wrapper {
             top: 18px;

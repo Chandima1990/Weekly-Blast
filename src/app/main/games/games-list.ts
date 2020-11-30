@@ -3,9 +3,9 @@ export class GamesList {
         {
             name: "Hang the Man",
             rules: ["You can discuss with your team members any time",
-                "the final answer should be kept on the chat box ",
-                "before giving the final answer you should have to raise your hand",
-                "The person who get to answer will be decided via chronological order",
+                "The final answer should be kept on the chat box ",
+                "Before giving the final answer you should have to raise your hand",
+                "Anyone in the team may give the answer in the chat",
                 "If the answer is wrong, the person marks will be deducted if any"],
             subteamgame: [
                 {
@@ -21,14 +21,14 @@ export class GamesList {
                     image: "/assets/images/custom/team/game 1 team 3.png",
                 },
             ],
-            time: 30
+            time: 60
         },
         {
             name: "IQ 1",
             rules: ["You can discuss with your team members any time",
-                "the final answer should be kept on the chat box ",
-                "before giving the final answer you should have to raise your hand",
-                "The person who get to answer will be decided via chronological order",
+                "The final answer should be kept on the chat box ",
+                "Before giving the final answer you should have to raise your hand",
+                "The person who get to answer will be decided based on chronological order",
                 "If the answer is wrong, the person marks will be deducted if any"],
             subteamgame: [
                 {
@@ -41,14 +41,14 @@ export class GamesList {
                     answer: "The answer is 5"
                 }
             ],
-            time: 30
+            time: 90
         },
         {
             name: "Reveal the picture 1",
             rules: ["You can discuss with your team members any time",
-                "the final answer should be kept on the chat box ",
-                "before giving the final answer you should have to raise your hand",
-                "The person who get to answer will be decided via chronological order",
+                "The final answer should be kept on the chat box ",
+                "Before giving the final answer you should have to raise your hand",
+                "The person who get to answer will be decided based on chronological order",
                 "If the answer is wrong, the person marks will be deducted if any"],
             subteamgame: [
                 {
@@ -66,9 +66,9 @@ export class GamesList {
         {
             name: "Guess the song 1",
             rules: ["You can discuss with your team members any time",
-                "the final answer should be kept on the chat box ",
-                "before giving the final answer you should have to raise your hand",
-                "The person who get to answer will be decided via chronological order",
+                "The final answer should be kept on the chat box ",
+                "Before giving the final answer you should have to raise your hand",
+                "The person who get to answer will be decided based on chronological order",
                 "If the answer is wrong, the person marks will be deducted if any"],
             subteamgame: [
                 {
@@ -86,9 +86,9 @@ export class GamesList {
         {
             name: "What happens next",
             rules: ["You can discuss with your team members any time",
-                "the final answer should be kept on the chat box ",
-                "before giving the final answer you should have to raise your hand",
-                "The person who get to answer will be decided via chronological order",
+                "The final answer should be kept on the chat box ",
+                "Before giving the final answer you should have to raise your hand",
+                "The person who get to answer will be decided based on chronological order",
                 "If the answer is wrong, the person marks will be deducted if any"],
             subteamgame: [
                 {
@@ -108,9 +108,9 @@ export class GamesList {
         {
             name: "IQ 2",
             rules: ["You can discuss with your team members any time",
-                "the final answer should be kept on the chat box ",
-                "before giving the final answer you should have to raise your hand",
-                "The person who get to answer will be decided via chronological order",
+                "The final answer should be kept on the chat box ",
+                "Before giving the final answer you should have to raise your hand",
+                "The person who get to answer will be decided based on chronological order",
                 "If the answer is wrong, the person marks will be deducted if any"],
             subteamgame: [
                 {
@@ -120,6 +120,7 @@ export class GamesList {
                 {
                     team: "Question",
                     image: "/assets/images/custom/team/IQ 2 Question.jpeg",
+                    answer:"Nothing will happen, because the upthrust force is the same"
                 },
             ],
             time: 30
@@ -127,9 +128,9 @@ export class GamesList {
         {
             name: "Guess the song 2",
             rules: ["You can discuss with your team members any time",
-                "the final answer should be kept on the chat box ",
-                "before giving the final answer you should have to raise your hand",
-                "The person who get to answer will be decided via chronological order",
+                "The final answer should be kept on the chat box ",
+                "Before giving the final answer you should have to raise your hand",
+                "The person who get to answer will be decided based on chronological order",
                 "If the answer is wrong, the person marks will be deducted if any"],
             subteamgame: [
                 {
@@ -147,9 +148,9 @@ export class GamesList {
         {
             name: "Reveal the picture 2",
             rules: ["You can discuss with your team members any time",
-                "the final answer should be kept on the chat box ",
-                "before giving the final answer you should have to raise your hand",
-                "The person who get to answer will be decided via chronological order",
+                "The final answer should be kept on the chat box ",
+                "Before giving the final answer you should have to raise your hand",
+                "The person who get to answer will be decided based on chronological order",
                 "If the answer is wrong, the person marks will be deducted if any"],
             subteamgame: [
                 {
@@ -167,9 +168,9 @@ export class GamesList {
         {
             name: "Guess the song 3",
             rules: ["You can discuss with your team members any time",
-                "the final answer should be kept on the chat box ",
-                "before giving the final answer you should have to raise your hand",
-                "The person who get to answer will be decided via chronological order",
+                "The final answer should be kept on the chat box ",
+                "Before giving the final answer you should have to raise your hand",
+                "The person who get to answer will be decided based on chronological order",
                 "If the answer is wrong, the person marks will be deducted if any"],
             subteamgame: [
                 {
@@ -187,11 +188,10 @@ export class GamesList {
         {
             name: "Explain the thief to the investigator",
             rules: ["Only describe the outer appearance",
-                "You can discuss with your team members any time",
-                "the final answer should be kept on the chat box ",
-                "before giving the final answer you should have to raise your hand",
-                "The person who get to answer will be decided via chronological order",
-                "If the answer is wrong, the person marks will be deducted if any"],
+                "You can question the person who is presenting",
+                "The final answer should be kept on the chat box ",
+                "Anyone in the team may give the answer in the chat",
+                "If the answer is wrong, the person marks will be deducted, if any"],
             subteamgame: [
                 {
                     team: "Team 1",
@@ -206,7 +206,7 @@ export class GamesList {
                     image: "/assets/images/custom/team/game 10 team 3.jpg",
                 },
             ],
-            time: 30
+            time: 60
         },
     ]
 }

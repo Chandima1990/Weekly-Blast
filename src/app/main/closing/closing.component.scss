@@ -1,1 +1,40 @@
-@import "src/app/app.component.scss"
+@import "src/app/app.component.scss";
+
+mat-card {
+    width: 400px;
+    font-size: 24px;
+    line-height: 36px;
+    i,
+    mat-icon {
+        font-size: 15px;
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        min-height: 32px;
+        line-height: 14px;
+    }
+}
+mat-card.first {
+    border: 2px solid yellow;
+    background-color: rgb(248, 248, 151) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+}
+mat-card.second {
+    border: 2px solid rgb(147, 147, 147);
+    background-color: rgb(252, 252, 241) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+}
+mat-card.third {
+    border: 2px solid rgb(105, 69, 3);
+    background-color: rgb(255, 168, 110) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+}

@@ -1,3 +1,105 @@
-<div class=" content" fxLayout="row" fxLayoutAlign="center center">
-    <iframe id="closingI" src="https://pickerwheel.com/" width="100%" height="100%" scrolling="yes" frameborder="0"></iframe>
+<div class="closing content" fxLayout="row" fxLayoutAlign="center center">
+    <div fxLayout="column" fxLayoutAlign="center center" class="w-100-p">
+        <h1>Congratulations!!!</h1>
+        <!-- <img width="500" src="/assets/images/custom/team/prize.png"> -->
+
+        <div fxFlex fxLayout="row" fxLayoutAlign="center stretch" class="mb-80">
+            <mat-card class="m-8 first" fxFlex>
+                <mat-card-header>
+                    <mat-card-title>
+                        Gold medal winner
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        {{firstTeam.team}} with {{firstTeam.score}} total points
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let member of firstTeam.members">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxFlex>
+                                <span matBadgeSize="medium" matBadgeOverlap="false" matBadgeColor="warn"
+                                    [matBadge]="member.score">
+                                    {{member.name}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+
+            </mat-card>
+            <mat-card class="m-8 second" fxFlex>
+                <mat-card-header>
+                    <mat-card-title>
+                        Silver medal winner
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        {{secondTeam.team}} with {{secondTeam.score}} total points
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let member of secondTeam.members">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxFlex>
+                                <span matBadgeSize="medium" matBadgeOverlap="false" matBadgeColor="warn"
+                                    [matBadge]="member.score">
+                                    {{member.name}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+
+            </mat-card>
+            <mat-card class="m-8 third" fxFlex>
+                <mat-card-header>
+                    <mat-card-title>
+                        Bronze medal winner
+                    </mat-card-title>
+                    <mat-card-subtitle>
+                        {{thirdTeam.team}} with {{thirdTeam.score}} total points
+                    </mat-card-subtitle>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngFor="let member of thirdTeam.members">
+                        <div fxLayout="row" fxLayoutAlign="space-between center">
+                            <div fxFlex>
+                                <span matBadgeSize="medium" matBadgeOverlap="false" matBadgeColor="warn"
+                                    [matBadge]="member.score">
+                                    {{member.name}}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </mat-card-content>
+
+            </mat-card>
+
+        </div>
+        <mat-card class="mb-8 mos" fxFlex>
+            <mat-card-header>
+                <mat-card-title>
+                    Person of the series
+                </mat-card-title>
+                <mat-card-subtitle>
+                    {{pos.name}} with {{pos.score}} total points
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+            </mat-card-content>
+        </mat-card>
+        <div fxFlex class="mb-16">
+            <button mat-raised-button class="mr-8" routerLink="/teams">
+                <mat-icon class="fs-24">navigate_before</mat-icon>
+                Re-arrange teams
+            </button>
+            <button mat-raised-button routerLink="/games">
+                <mat-icon class="fs-24">navigate_before</mat-icon>
+                Back to the fields
+            </button>
+        </div>
+        <!-- <div fxFlex> -->
+        <iframe id="closingI" src="https://pickerwheel.com/" width="100%" height="800px" scrolling="yes"
+            frameborder="0"></iframe>
+        <!-- </div> -->
+    </div>
 </div>

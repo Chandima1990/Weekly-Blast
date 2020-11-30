@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 import { environment } from 'environments/environment';
 import * as _ from 'lodash';
+import { CountdownComponent } from 'ngx-countdown';
 import { on } from 'process';
 import { BehaviorSubject } from 'rxjs';
 import { GamesList } from './games-list';
@@ -13,21 +14,27 @@ import { GamesList } from './games-list';
     styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
+    @ViewChild('timer', { static: false }) private countdown: CountdownComponent;
+    // [config]="config" (event)="handleEvent($event)"
+
     teamsData: any
     onteamsData: BehaviorSubject<any>
     gameList: any[]
     maxGameSteps = environment.maxGameSteps;
     stopTime: Date;
+    leftTime: number = 0;
 
     constructor(private hc: HttpClient, private _fuseSidebarService: FuseSidebarService) {
 
-        
+
         this.onteamsData = new BehaviorSubject(JSON.parse(localStorage.getItem("scoreboard")));
         this.gameList = GamesList.List;
+        this.leftTime = this.gameList[0].time
     }
-    
+
     ngOnInit() {
-    //    this.setTime()
+        //this.countdown.begin()
+        //    this.setTime()
         this.teamsData = JSON.parse(localStorage.getItem("scoreboard"))
 
         if (!this.teamsData) {
@@ -92,9 +99,53 @@ export class GamesComponent implements OnInit {
         return value;
     }
 
-    setTime(seconds){
-        this.stopTime = new Date("2020-11-29 22:00:00");
-        //this.stopTime = new Date(this.stopTime.setSeconds(this.stopTime.getSeconds() + seconds))
+    begin() {
+        this.countdown.begin();
+    }
+
+    pause() {
+        this.countdown.pause();
+        this.timesUp({ action: "pause" })
+    }
+
+    resume() {
+        this.countdown.resume();
+        this.timesUp({ action: "resume" })
+    }
+
+    restart() {
+        this.countdown.restart();
+        this.timesUp({ action: "pause" })
+    }
+
+    stop() {
+        this.countdown.stop();
+        this.timesUp({ action: "pause" })
+    }
+
+    timesUp(event) {
+        let audio = new Audio();
+
+        if (event.action == "done") {
+            audio.pause()
+            audio.src = "/assets/images/custom/team/clock-tick9.wav";
+            audio.loop = false;
+        }
+        //else if (event.action == "pause") { 
+        //     audio.pause()
+        // } else {
+        //     audio.src = "/assets/images/custom/team/clock-tick1.wav";
+        //     audio.loop = true;
+        //     audio.playbackRate = 0.2
+        // }
+
+        audio.load();
+        audio.play();
+    }
+
+    setTime(event) {
+        console.log(event)
+        this.leftTime = this.gameList[event.selectedIndex].time
     }
 
     plus(volunteer, vteam) {

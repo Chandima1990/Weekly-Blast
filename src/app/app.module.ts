@@ -47,6 +47,7 @@ import { ClosingComponent } from './main/closing/closing.component';
 import { MatDivider, MatDividerModule } from '@angular/material/divider';
 import { ScorePipe } from './main/games/score.pipe';
 
+import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
 
 @NgModule({
     declarations: [
@@ -77,7 +78,7 @@ import { ScorePipe } from './main/games/score.pipe';
         MatSliderModule,
         MatStepperModule,
         MatListModule,
-        
+
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
         FuseProgressBarModule,
@@ -95,6 +96,8 @@ import { ScorePipe } from './main/games/score.pipe';
         //this is a test comment
         //AppRoutingModule
 
+        CountdownModule
+
 
     ],
     bootstrap: [
@@ -108,7 +111,8 @@ import { ScorePipe } from './main/games/score.pipe';
             provide: HTTP_INTERCEPTORS,
             useClass: InterceptorService,
             multi: true
-        }
+        },
+        CountdownGlobalConfig
     ]
 })
 export class AppModule {
