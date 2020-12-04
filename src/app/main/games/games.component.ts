@@ -81,13 +81,13 @@ export class GamesComponent implements OnInit {
 
                     this.teamsData = List;
                     this.onteamsData.next(this.teamsData)
-                    localStorage.setItem("scoreboard", JSON.stringify(this.onteamsData))
+                    localStorage.setItem("scoreboard", JSON.stringify(this.teamsData))
                 })
         }
 
     }
 
-    toggleBar() {
+    toggleBar(): void {
         this._fuseSidebarService.getSidebar('scoreboard').toggleOpen();
     }
 
@@ -180,5 +180,10 @@ export class GamesComponent implements OnInit {
             audio.load();
             audio.play();
         }
+    }
+
+    clearCache() {
+        localStorage.removeItem("scoreboard");
+        location.reload()
     }
 }

@@ -6,7 +6,8 @@ export class GamesList {
                 "The final answer should be kept on the chat box ",
                 "Before giving the final answer you should have to raise your hand",
                 "Anyone in the team may give the answer in the chat",
-                "If the answer is wrong, the person marks will be deducted if any"],
+                "If the answer is wrong, the person marks will be deducted if any",
+                "Completing the full word will get 1 point to your team"],
             subteamgame: [
                 {
                     team: "Team 1",
@@ -120,7 +121,7 @@ export class GamesList {
                 {
                     team: "Question",
                     image: "/assets/images/custom/team/IQ 2 Question.jpeg",
-                    answer:"Nothing will happen, because the upthrust force is the same"
+                    answer: "Nothing will happen, because the upthrust force is the same"
                 },
             ],
             time: 30
