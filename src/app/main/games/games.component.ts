@@ -24,6 +24,8 @@ export class GamesComponent implements OnInit {
     stopTime: Date;
     leftTime: number = 0;
 
+    audio = new Audio();
+
     constructor(private hc: HttpClient, private _fuseSidebarService: FuseSidebarService) {
 
 
@@ -33,10 +35,14 @@ export class GamesComponent implements OnInit {
     }
 
     ngOnInit() {
-        //this.countdown.begin()
-        //    this.setTime()
-        this.teamsData = JSON.parse(localStorage.getItem("scoreboard"))
 
+        this.teamsData = JSON.parse(localStorage.getItem("scoreboard"))
+        this.loadFromCSV();
+
+        this.audio.load();
+    }
+
+    loadFromCSV() {
         if (!this.teamsData) {
 
             this.hc.get("/assets/images/custom/team/groupedByTeamPickerWheel.csv",
@@ -81,13 +87,12 @@ export class GamesComponent implements OnInit {
 
                     this.teamsData = List;
                     this.onteamsData.next(this.teamsData)
-                    localStorage.setItem("scoreboard", JSON.stringify(this.onteamsData))
+                    localStorage.setItem("scoreboard", JSON.stringify(this.teamsData))
                 })
         }
-
     }
 
-    toggleBar() {
+    toggleBar(): void {
         this._fuseSidebarService.getSidebar('scoreboard').toggleOpen();
     }
 
@@ -100,47 +105,38 @@ export class GamesComponent implements OnInit {
     }
 
     begin() {
+        this.audio.src = "/assets/images/custom/team/clock.wav";
         this.countdown.begin();
+        this.audio.play()
     }
 
     pause() {
         this.countdown.pause();
-        this.timesUp({ action: "pause" })
+        this.audio.pause()
     }
 
     resume() {
         this.countdown.resume();
-        this.timesUp({ action: "resume" })
+        this.audio.src = "/assets/images/custom/team/clock.wav";
+        this.audio.play()
     }
 
     restart() {
         this.countdown.restart();
-        this.timesUp({ action: "pause" })
+        this.audio.pause()
     }
 
     stop() {
         this.countdown.stop();
-        this.timesUp({ action: "pause" })
+        this.audio.pause()
     }
 
     timesUp(event) {
-        let audio = new Audio();
-
         if (event.action == "done") {
-            audio.pause()
-            audio.src = "/assets/images/custom/team/clock-tick9.wav";
-            audio.loop = false;
+            this.audio.pause()
+            this.audio.src = "/assets/images/custom/team/timesup.wav";
+            this.audio.play();
         }
-        //else if (event.action == "pause") { 
-        //     audio.pause()
-        // } else {
-        //     audio.src = "/assets/images/custom/team/clock-tick1.wav";
-        //     audio.loop = true;
-        //     audio.playbackRate = 0.2
-        // }
-
-        audio.load();
-        audio.play();
     }
 
     setTime(event) {
@@ -156,15 +152,14 @@ export class GamesComponent implements OnInit {
 
             localStorage.setItem("scoreboard", JSON.stringify(this.teamsData))
 
-            let audio = new Audio();
             if (this.teamsData.find(team => { return team == vteam }).score == this.maxGameSteps) {
-                audio.src = "/assets/images/custom/team/crowdhomerunapplause.wav";
+                this.audio.src = "/assets/images/custom/team/crowdhomerunapplause.wav";
             } else {
-                audio.src = "/assets/images/custom/team/applause2.wav";
+                this.audio.src = "/assets/images/custom/team/applause2.wav";
             }
 
-            audio.load();
-            audio.play();
+            //this.audio.load();
+            this.audio.play();
         }
     }
     minus(volunteer, vteam) {
@@ -175,10 +170,18 @@ export class GamesComponent implements OnInit {
 
             localStorage.setItem("scoreboard", JSON.stringify(this.teamsData))
 
-            let audio = new Audio();
-            audio.src = "/assets/images/custom/team/missed.wav";
-            audio.load();
-            audio.play();
+
+            this.audio.src = "/assets/images/custom/team/missed.wav";
+            // this.audio.load();
+            this.audio.play();
+
         }
+    }
+
+    clearCache() {
+        localStorage.removeItem("scoreboard");
+        this.teamsData = null;
+        this.loadFromCSV();
+        //location.reload()
     }
 }

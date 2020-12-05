@@ -19,7 +19,7 @@ export const fuseConfig: FuseConfig = {
             primaryBackground  : 'red-900',
             secondaryBackground: 'red-50',
             folded             : true,
-            hidden             : true,
+            hidden             : false,
             position           : 'left',
             variant            : 'vertical-style-1'
         },

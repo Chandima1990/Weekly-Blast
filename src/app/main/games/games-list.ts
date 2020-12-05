@@ -2,11 +2,13 @@ export class GamesList {
     public static List = [
         {
             name: "Hang the Man",
+            operatingmode: "team",
             rules: ["You can discuss with your team members any time",
                 "The final answer should be kept on the chat box ",
                 "Before giving the final answer you should have to raise your hand",
                 "Anyone in the team may give the answer in the chat",
-                "If the answer is wrong, the person marks will be deducted if any"],
+                "If the answer is wrong, the person marks will be deducted if any",
+                "Completing the full word will get 1 point to your team"],
             subteamgame: [
                 {
                     team: "Team 1",
@@ -25,6 +27,7 @@ export class GamesList {
         },
         {
             name: "IQ 1",
+            operatingmode: "open",
             rules: ["You can discuss with your team members any time",
                 "The final answer should be kept on the chat box ",
                 "Before giving the final answer you should have to raise your hand",
@@ -45,6 +48,7 @@ export class GamesList {
         },
         {
             name: "Reveal the picture 1",
+            operatingmode: "open",
             rules: ["You can discuss with your team members any time",
                 "The final answer should be kept on the chat box ",
                 "Before giving the final answer you should have to raise your hand",
@@ -65,6 +69,7 @@ export class GamesList {
         },
         {
             name: "Guess the song 1",
+            operatingmode: "open",
             rules: ["You can discuss with your team members any time",
                 "The final answer should be kept on the chat box ",
                 "Before giving the final answer you should have to raise your hand",
@@ -85,6 +90,7 @@ export class GamesList {
         },
         {
             name: "What happens next",
+            operatingmode: "open",
             rules: ["You can discuss with your team members any time",
                 "The final answer should be kept on the chat box ",
                 "Before giving the final answer you should have to raise your hand",
@@ -94,19 +100,22 @@ export class GamesList {
                 {
                     team: "Question",
                     image: "",
-                    content: 'videoplayback'
+                    content: 'videoplayback',
+                    src: "/assets/images/custom/team/vid.mp4"
                 },
                 {
                     team: "Answer",
                     image: "",
                     content: 'videoplayback',
-                    answer: "They both get knocked out!"
+                    answer: "They both get knocked out!",
+                    src: "/assets/images/custom/team/vid.mp4"
                 },
             ],
             time: 30
         },
         {
             name: "IQ 2",
+            operatingmode: "open",
             rules: ["You can discuss with your team members any time",
                 "The final answer should be kept on the chat box ",
                 "Before giving the final answer you should have to raise your hand",
@@ -120,13 +129,14 @@ export class GamesList {
                 {
                     team: "Question",
                     image: "/assets/images/custom/team/IQ 2 Question.jpeg",
-                    answer:"Nothing will happen, because the upthrust force is the same"
+                    answer: "Nothing will happen, because the upthrust force is the same"
                 },
             ],
             time: 30
         },
         {
             name: "Guess the song 2",
+            operatingmode: "open",
             rules: ["You can discuss with your team members any time",
                 "The final answer should be kept on the chat box ",
                 "Before giving the final answer you should have to raise your hand",
@@ -147,6 +157,7 @@ export class GamesList {
         },
         {
             name: "Reveal the picture 2",
+            operatingmode: "open",
             rules: ["You can discuss with your team members any time",
                 "The final answer should be kept on the chat box ",
                 "Before giving the final answer you should have to raise your hand",
@@ -167,6 +178,7 @@ export class GamesList {
         },
         {
             name: "Guess the song 3",
+            operatingmode: "open",
             rules: ["You can discuss with your team members any time",
                 "The final answer should be kept on the chat box ",
                 "Before giving the final answer you should have to raise your hand",
@@ -187,6 +199,7 @@ export class GamesList {
         },
         {
             name: "Explain the thief to the investigator",
+            operatingmode: "team",
             rules: ["Only describe the outer appearance",
                 "You can question the person who is presenting",
                 "The final answer should be kept on the chat box ",
