@@ -1,143 +1,165 @@
-<div class="p-24 content page-layout simple left-sidebar games">
-    <!-- <div fxLayout="row" fxLayoutAlign="center center"> -->
+<div class="p-24 content inner-sidebar page-layout simple left-sidebar  games">
+
     <!-- sidebar -->
-    <fuse-sidebar name="scoreboard" lockedOpen="gt-md" folded='true'>
-        <div fxLayout="row" fxLayoutAlign="start start">
-            <button class="m-16" mat-fab (click)="toggleBar()">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <h2 fxFlex>Scoreboard</h2>
-        </div>
-        <mat-card class="m-8" *ngFor="let team of teamsData">
-            <mat-card-header>
-                <mat-card-title>
-                    {{team.team}}
-                </mat-card-title>
-                <mat-card-subtitle>
-                    Score: {{team.score}}
-                </mat-card-subtitle>
-            </mat-card-header>
-            <mat-card-content>
-                <div *ngFor="let member of team.members">
-                    <div fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="content">
+        <fuse-sidebar name="scoreboard" position="left" lockedOpen="gt-md" folded='false'>
+            <div class="content" fusePerfectScrollbar>
+
+                <div fxLayout="row" fxLayoutAlign="start start">
+                    <button class="m-16" mat-fab (click)="toggleBar()">
+                        <mat-icon>menu</mat-icon>
+                    </button>
+
+                    <h2 fxFlex>Scoreboard</h2>
+
+                    <div class="alert warn-alert fs-12 m-8" id="team-warning" fxLayout="column"
+                        fxLayoutAlign="start start">
                         <div fxFlex>
-                            <span matBadgeSize="medium" matBadgeOverlap="false" matBadgeColor="warn"
-                                [matBadge]="member.score">
-                                {{member.name}}
-                            </span>
+                            <mat-icon fxFlex class="w-16 h-16 mr-8 material-icons-round">report_problem</mat-icon>
+                            Something wrong with teams?
                         </div>
-                        <div fxFlex>
-                            <div fxLayout="row" fxLayoutAlign="center center">
-                                <button style="margin-bottom: 2px;" mat-raised-button color="primary"
-                                    (click)="plus(member, team)">
-                                    +Score
-                                </button>
-                                <button style="margin-bottom: 2px;" mat-raised-button color="warn"
-                                    (click)="minus(member, team)">
-                                    -Score
-                                </button>
-                            </div>
-                        </div>
+                        <button class="m-8 ml-16 fs-12" mat-raised-button (click)="clearCache()">
+                            <mat-icon>replay</mat-icon> Try refetch
+                        </button>
                     </div>
                 </div>
-            </mat-card-content>
-
-        </mat-card>
-    </fuse-sidebar>
-
-    <!-- content start -->
-    <div fxLayout="column" fxLayoutAlign="start stretch" class="w-100-p">
-        <div fxLayout="row" fxLayoutAlign="space-between stretch">
-            <div fxLayout="column" fxLayoutAlign="center center">
-                <img width="200" src="/assets/images/custom/team/logo-large.jpg">
-                <h1>
-                    Infosoft Weekly Blast
-                </h1>
-            </div>
-            <div fxFlex>
-                <button mat-raised-button class="mr-8" routerLink="/teams">
-                    <mat-icon class="fs-24">navigate_before</mat-icon>
-                    Re-arrange Teams
-                </button>
-                <button mat-raised-button routerLink="/closing">
-                    Closing Ceremony
-                    <mat-icon class="fs-24">navigate_next</mat-icon>
-                </button>
-            </div>
-        </div>
-        <!-- Teams marathon views -->
-        <div fxFlex class="mt-8">
-            <div class="mb-8" *ngFor="let team of teamsData">
-                <!-- <div fxFlex>{{team.team}}</div> -->
-                <mat-card fxFlex class="w-100-p ">
+                <mat-card class="m-8" *ngFor="let team of teamsData">
+                    <mat-card-header>
+                        <mat-card-title>
+                            {{team.team}}
+                        </mat-card-title>
+                        <mat-card-subtitle>
+                            Score: {{team.score}}
+                        </mat-card-subtitle>
+                    </mat-card-header>
                     <mat-card-content>
-                        <h2>{{team.team}}</h2>
-                        <mat-slider thumbLabel [displayWith]="formatLabel" tickInterval="1" min="0" max="4"
-                            [value]="team.score">
-                        </mat-slider>
+                        <div *ngFor="let member of team.members">
+                            <div fxLayout="row" fxLayoutAlign="space-between center">
+                                <div fxFlex>
+                                    <span matBadgeSize="medium" matBadgeOverlap="false" matBadgeColor="warn"
+                                        [matBadge]="member.score">
+                                        {{member.name}}
+                                    </span>
+                                </div>
+                                <div fxFlex>
+                                    <div fxLayout="row" fxLayoutAlign="center center">
+                                        <button style="margin-bottom: 2px;" mat-raised-button color="primary"
+                                            (click)="plus(member, team)">
+                                            +Score
+                                        </button>
+                                        <button style="margin-bottom: 2px;" mat-raised-button color="warn"
+                                            (click)="minus(member, team)">
+                                            -Score
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </mat-card-content>
-                </mat-card>
 
-                <div fxFlex class="ml-16">
-                    <mat-icon *ngIf="team.score != maxGameSteps">flag</mat-icon>
-                    <mat-icon class="star" *ngIf="team.score == maxGameSteps">start</mat-icon>
+                </mat-card>
+            </div>
+        </fuse-sidebar>
+
+        <!-- content start -->
+        <div fxLayout="column" fxLayoutAlign="start stretch" class="w-100-p">
+            <div fxLayout="row" fxLayoutAlign="space-between stretch">
+                <div fxLayout="column" fxLayoutAlign="center center">
+                    <img width="200" src="/assets/images/custom/team/logo-large.jpg">
+                    <h1>
+                        Infosoft Weekly Blast
+                    </h1>
+                </div>
+                <div fxFlex>
+                    <button mat-raised-button class="mr-8" routerLink="/teams">
+                        <mat-icon class="fs-24">navigate_before</mat-icon>
+                        Re-arrange Teams
+                    </button>
+                    <button mat-raised-button routerLink="/closing">
+                        Closing Ceremony
+                        <mat-icon class="fs-24">navigate_next</mat-icon>
+                    </button>
                 </div>
             </div>
-        </div>
 
-        <div class="Timer" fxLayout="column" fxLayoutAlign="space-evenly center">
-            <countdown class="fs-24" fxFlex #timer [config]="{leftTime: leftTime, demand: true}"
-                (event)="timesUp($event)">
-            </countdown>
-            <div fxLayout="row" fxLayoutAlign="space-evenly center">
-                <button class="mr-8" mat-stroked-button (click)="pause()">
-                    <mat-icon class="fs-24">pause</mat-icon>
-                </button>
-                <button class="mr-8" mat-stroked-button (click)="resume()">
-                    <mat-icon class="fs-24">play_arrow</mat-icon>
-                </button>
-                <button class="mr-8" mat-stroked-button (click)="restart()">
-                    <mat-icon class="fs-24">replay</mat-icon>
-                </button>
+            <!-- Teams marathon views -->
+            <div fxFlex class="mt-8">
+                <div class="mb-8" *ngFor="let team of teamsData">
+                    <mat-card fxFlex class="w-100-p ">
+                        <mat-card-content>
+                            <h2>{{team.team}}</h2>
+                            <mat-slider disabled="disabled" thumbLabel [displayWith]="formatLabel" tickInterval="1" min="0" max="4"
+                                [value]="team.score">
+                            </mat-slider>
+                        </mat-card-content>
+                    </mat-card>
+
+                    <div fxFlex class="ml-16">
+                        <mat-icon *ngIf="team.score != maxGameSteps">flag</mat-icon>
+                        <mat-icon class="star" *ngIf="team.score == maxGameSteps">start</mat-icon>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div fxFlex>
+                <!-- Timer -->
+                <div class="Timer" fxLayout="column" fxLayoutAlign="space-evenly center">
+                    <countdown class="fs-24" fxFlex #timer [config]="{leftTime: leftTime, demand: true}"
+                        (event)="timesUp($event)">
+                    </countdown>
+                    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+                        <button class="mr-8 primary" mat-raised-button (click)="pause()">
+                            <mat-icon class="fs-24">pause</mat-icon>
+                        </button>
+                        <button class="mr-8 green" mat-raised-button (click)="resume()">
+                            <mat-icon class="fs-24">play_arrow</mat-icon>
+                        </button>
+                        <button class="mr-8 warn" mat-raised-button (click)="restart()">
+                            <mat-icon class="fs-24">replay</mat-icon>
+                        </button>
+                    </div>
+                </div>
+                <!-- Games/Steps -->
+                <mat-horizontal-stepper linear #stepper (selectionChange)="setTime($event)">
+                    <mat-step *ngFor="let game of gameList">
+                        <ng-template matStepLabel>{{game.name}}</ng-template>
+                        <h1>{{game.name}}</h1>
+                        
+                        <!-- Sub Steps/Teams -->
+                        <mat-horizontal-stepper linear #stepper>
+                            <mat-step class="mat-step" *ngFor="let subgame of game.subteamgame">
+                                <div class="mb-8" fxLayout="column" fxLayoutAlign="start center">
+                                    <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngIf="subgame.answer">
+                                        <h1>{{subgame.answer}}</h1>
+                                    </div>
+                                </div>
+
+                                <ng-template matStepLabel>{{subgame.team}}</ng-template>
+                                <div fxLayout="row" fxLayoutAlign="start start">
+                                    <img fxFlex *ngIf="subgame.image" [src]="subgame.image" alt="" width="600"
+                                        class="mr-16">
+
+                                    <video fxFlex width="600" controls class="mr-16" *ngIf="subgame.content"
+                                        [src]="subgame.src" width type="video/mp4">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                    <div fxFlex class="mr-16">
+                                        <mat-list role="list">
+                                            <mat-list-item role="listitem" *ngFor="let rule of game.rules">
+                                                <mat-icon class="fs-24">gavel</mat-icon><b>
+                                                    {{rule}}
+                                                </b>
+                                            </mat-list-item>
+                                        </mat-list>
+                                    </div>
+                                </div>
+                            </mat-step>
+                        </mat-horizontal-stepper>
+                    </mat-step>
+                </mat-horizontal-stepper>
             </div>
         </div>
-
-        <div fxFlex>
-            <mat-horizontal-stepper linear #stepper (selectionChange)="setTime($event)">
-                <mat-step *ngFor="let game of gameList">
-                    <ng-template matStepLabel>{{game.name}}</ng-template>
-                    <h1>{{game.name}}</h1>
-                    <mat-horizontal-stepper linear #stepper>
-                        <mat-step class="mat-step" *ngFor="let subgame of game.subteamgame">
-                            <div class="mb-8" fxLayout="column" fxLayoutAlign="start center">
-                                <div fxLayout="row" fxLayoutAlign="space-evenly center" *ngIf="subgame.answer">
-                                    <h1>{{subgame.answer}}</h1>
-                                </div>
-                            </div>
-
-                            <ng-template matStepLabel>{{subgame.team}}</ng-template>
-                            <div fxLayout="row" fxLayoutAlign="start start">
-                                <img fxFlex *ngIf="subgame.image" [src]="subgame.image" alt="" width="600" class="mr-16">
-
-                                <video fxFlex width="600" controls class="mr-16" *ngIf="subgame.content"
-                                    src="/assets/images/custom/team/vid.mp4" width type="video/mp4">
-                                    Your browser does not support the video tag.
-                                </video>
-                                <div fxFlex class="mr-16">
-                                    <mat-list role="list">
-                                        <mat-list-item role="listitem" *ngFor="let rule of game.rules">
-                                            <mat-icon class="fs-24">gavel</mat-icon><b>
-                                                {{rule}}
-                                            </b>
-                                        </mat-list-item>
-                                    </mat-list>
-                                </div>
-                            </div>
-                        </mat-step>
-                    </mat-horizontal-stepper>
-                </mat-step>
-            </mat-horizontal-stepper>
-        </div>
     </div>
-    <!-- </div> -->
 </div>
