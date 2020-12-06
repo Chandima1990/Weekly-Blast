@@ -1,3 +1,4 @@
+<img src="/assets/images/custom/team/won.gif" alt="" class="wonanimation" [ngClass]="wonfirstplace">
 <div class="p-24 content inner-sidebar page-layout simple left-sidebar  games">
 
     <!-- sidebar -->
@@ -88,8 +89,8 @@
                     <mat-card fxFlex class="w-100-p ">
                         <mat-card-content>
                             <h2>{{team.team}}</h2>
-                            <mat-slider disabled="disabled" thumbLabel [displayWith]="formatLabel" tickInterval="1" min="0" max="4"
-                                [value]="team.score">
+                            <mat-slider disabled="disabled" thumbLabel [displayWith]="formatLabel" tickInterval="1"
+                                min="0" max="4" [value]="team.score">
                             </mat-slider>
                         </mat-card-content>
                     </mat-card>
@@ -126,7 +127,7 @@
                     <mat-step *ngFor="let game of gameList">
                         <ng-template matStepLabel>{{game.name}}</ng-template>
                         <h1>{{game.name}}</h1>
-                        
+
                         <!-- Sub Steps/Teams -->
                         <mat-horizontal-stepper linear #stepper>
                             <mat-step class="mat-step" *ngFor="let subgame of game.subteamgame">
