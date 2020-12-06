@@ -18,6 +18,7 @@ export class GamesComponent implements OnInit {
     // [config]="config" (event)="handleEvent($event)"
 
     teamsData: any
+    wonfirstplace = "hidden";
     onteamsData: BehaviorSubject<any>
     gameList: any[]
     maxGameSteps = environment.maxGameSteps;
@@ -107,7 +108,9 @@ export class GamesComponent implements OnInit {
     begin() {
         this.audio.src = "/assets/images/custom/team/clock.wav";
         this.countdown.begin();
+        this.audio.loop = true;
         this.audio.play()
+        this.audio.volume = 1
     }
 
     pause() {
@@ -118,6 +121,8 @@ export class GamesComponent implements OnInit {
     resume() {
         this.countdown.resume();
         this.audio.src = "/assets/images/custom/team/clock.wav";
+        this.audio.loop = true;
+        this.audio.volume = 1
         this.audio.play()
     }
 
@@ -135,6 +140,8 @@ export class GamesComponent implements OnInit {
         if (event.action == "done") {
             this.audio.pause()
             this.audio.src = "/assets/images/custom/team/timesup.wav";
+            this.audio.volume = 0.1
+            this.audio.loop = false;
             this.audio.play();
         }
     }
@@ -143,7 +150,6 @@ export class GamesComponent implements OnInit {
         console.log(event)
         this.leftTime = this.gameList[event.selectedIndex].time
     }
-
     plus(volunteer, vteam) {
         if (this.teamsData.find(team => { return team == vteam }).score != this.maxGameSteps) {
 
@@ -154,6 +160,12 @@ export class GamesComponent implements OnInit {
 
             if (this.teamsData.find(team => { return team == vteam }).score == this.maxGameSteps) {
                 this.audio.src = "/assets/images/custom/team/crowdhomerunapplause.wav";
+                this.wonfirstplace = "fade-in";
+
+                this.audio.onended = (() => {
+                    this.wonfirstplace = "fade-out";
+                    setTimeout(() => { this.wonfirstplace = "hidden" }, 2500)
+                })
             } else {
                 this.audio.src = "/assets/images/custom/team/applause2.wav";
             }
@@ -162,6 +174,7 @@ export class GamesComponent implements OnInit {
             this.audio.play();
         }
     }
+
     minus(volunteer, vteam) {
         if (this.teamsData.find(team => { return team == vteam }).members.find(member => { return member == volunteer }).score != 0) {
 
