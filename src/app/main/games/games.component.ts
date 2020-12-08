@@ -6,7 +6,7 @@ import * as _ from 'lodash';
 import { CountdownComponent } from 'ngx-countdown';
 import { on } from 'process';
 import { BehaviorSubject } from 'rxjs';
-import { GamesList } from './games-list';
+
 
 @Component({
     selector: 'app-games',
@@ -20,7 +20,7 @@ export class GamesComponent implements OnInit {
     teamsData: any
     wonfirstplace = "hidden";
     onteamsData: BehaviorSubject<any>
-    gameList: any[]
+    gameList: any[] = require('../../../assets/user_files/game_list.json')
     maxGameSteps = environment.maxGameSteps;
     stopTime: Date;
     leftTime: number = 0;
@@ -31,7 +31,7 @@ export class GamesComponent implements OnInit {
 
 
         this.onteamsData = new BehaviorSubject(JSON.parse(localStorage.getItem("scoreboard")));
-        this.gameList = GamesList.List;
+        
         this.leftTime = this.gameList[0].time
     }
 
@@ -46,7 +46,7 @@ export class GamesComponent implements OnInit {
     loadFromCSV() {
         if (!this.teamsData) {
 
-            this.hc.get("/assets/images/custom/team/groupedByTeamPickerWheel.csv",
+            this.hc.get("/assets/user_files/groupedByTeamPickerWheel.csv",
                 { responseType: "text" }).subscribe(data => {
                     this.teamsData = data.split('\n')
                     let result = []
@@ -80,7 +80,8 @@ export class GamesComponent implements OnInit {
                                     team: member.TeamName.replaceAll('"', ''),
                                     name: member.Member.replaceAll('"', ''),
                                     gender: member.Gender.replaceAll('"', ''),
-                                    score: 0
+                                    score: 0,
+                                    place: 0
                                 }
                             })
                         })
@@ -150,6 +151,7 @@ export class GamesComponent implements OnInit {
         console.log(event)
         this.leftTime = this.gameList[event.selectedIndex].time
     }
+
     plus(volunteer, vteam) {
         if (this.teamsData.find(team => { return team == vteam }).score != this.maxGameSteps) {
 
@@ -170,6 +172,7 @@ export class GamesComponent implements OnInit {
                 this.audio.src = "/assets/images/custom/team/applause2.wav";
             }
 
+            this.audio.loop = false;
             //this.audio.load();
             this.audio.play();
         }
@@ -186,6 +189,7 @@ export class GamesComponent implements OnInit {
 
             this.audio.src = "/assets/images/custom/team/missed.wav";
             // this.audio.load();
+            this.audio.loop = false;
             this.audio.play();
 
         }
