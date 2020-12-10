@@ -5,7 +5,8 @@
 export const environment = {
     production: false,
     hmr       : false,
-    maxGameSteps : 4
+    maxGameSteps : 4,
+    basefilepath: ''
 };
 
 /*
