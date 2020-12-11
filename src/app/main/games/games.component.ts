@@ -6,6 +6,10 @@ import { environment } from 'environments/environment';
 import * as _ from 'lodash';
 import { CountdownComponent } from 'ngx-countdown';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CommonService } from 'app/services/common.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { remove } from 'lodash';
 
 
 @Component({
@@ -26,17 +30,25 @@ export class GamesComponent implements OnInit {
     confirmDialogRef: MatDialogRef<FuseConfirmDialogComponent>;
 
     audio = new Audio();
-
-    constructor(private hc: HttpClient, private _fuseSidebarService: FuseSidebarService, public _matDialog: MatDialog) {
+    winingQueue = []
+    mute: boolean;
+    unsubscribeAll: Subject<any>;
+    constructor(private hc: HttpClient, private cs: CommonService, public _matDialog: MatDialog, private _fuseSidebarService: FuseSidebarService) {
+        this.unsubscribeAll = new Subject();
+        this.audio.load();
         this.leftTime = this.gameList[0].time
+        this.pauseAudio()
     }
 
     ngOnInit() {
+
         this.teamsData = JSON.parse(localStorage.getItem("scoreboard"))
+        this.winingQueue = JSON.parse(localStorage.getItem("winingQueue")) || []
+        this.mute = JSON.parse(localStorage.getItem("mute")) || false
+
         if (!this.teamsData) {
             this.loadFromCSV();
         }
-        this.audio.load();
     }
 
     //#region loading teams
@@ -68,7 +80,8 @@ export class GamesComponent implements OnInit {
                     List.push({
                         team: item,
                         score: 0,
-                        place: 0,
+                        place: null,
+                        colspan: 1,
                         members: result.filter(a => {
                             return a.TeamName.replace(" ", "").replaceAll('"', '') == item
                         }).map(member => {
@@ -100,45 +113,40 @@ export class GamesComponent implements OnInit {
 
         return value;
     }
-    //#region audio
+
+    //#region timer
     begin() {
-        this.audio.src = "/assets/images/custom/team/clock.wav";
         this.countdown.begin();
         this.audio.loop = true;
-        this.audio.play()
-        this.audio.volume = 1
+        this.playAudio("/assets/images/custom/team/clock.wav")
     }
 
     pause() {
         this.countdown.pause();
-        this.audio.pause()
+        this.pauseAudio()
     }
 
     resume() {
         this.countdown.resume();
-        this.audio.src = "/assets/images/custom/team/clock.wav";
         this.audio.loop = true;
-        this.audio.volume = 1
-        this.audio.play()
+        this.playAudio("/assets/images/custom/team/clock.wav")
     }
 
     restart() {
         this.countdown.restart();
-        this.audio.pause()
+        this.pauseAudio()
     }
 
     stop() {
         this.countdown.stop();
-        this.audio.pause()
+        this.pauseAudio()
     }
 
     timesUp(event) {
         if (event.action == "done") {
-            this.audio.pause()
-            this.audio.src = "/assets/images/custom/team/timesup.wav";
-            this.audio.volume = 0.1
+            this.pauseAudio()
             this.audio.loop = false;
-            this.audio.play();
+            this.playAudio("/assets/images/custom/team/timesup.wav")
         }
     }
     //#endregion
@@ -150,10 +158,6 @@ export class GamesComponent implements OnInit {
     //#region scoring
     plus(volunteer, vteam) {
 
-        this.audio.src = "/assets/images/custom/team/error.wav";
-        this.audio.loop = false;
-        this.audio.play();
-
         if (this.teamsData.find(team => { return team == vteam }).score != this.maxGameSteps) {
 
             this.teamsData.find(team => { return team == vteam }).members.find(member => { return member == volunteer }).score++;
@@ -162,27 +166,48 @@ export class GamesComponent implements OnInit {
             localStorage.setItem("scoreboard", JSON.stringify(this.teamsData))
 
             if (this.teamsData.find(team => { return team == vteam }).score == this.maxGameSteps) {
-                this.audio.src = "/assets/images/custom/team/crowdhomerunapplause.wav";
-                this.wonfirstplace = "fade-in";
 
-                this.audio.onended = (() => {
+                this.pauseAudio()
+                this.playAudio("/assets/images/custom/team/winningapplaude.wav");
+
+                vteam.place = this.winingQueue.length + 1
+                vteam.colspan = 2;
+                this.winingQueue.push(vteam)
+                localStorage.setItem("winingQueue", JSON.stringify(this.winingQueue))
+
+                this.wonfirstplace = "fade-in";
+                setTimeout(() => {
+                    this.wonfirstplace = "hidden"
                     this.wonfirstplace = "fade-out";
-                    setTimeout(() => { this.wonfirstplace = "hidden" }, 2500)
-                })
+                    setTimeout(() => {
+                        this.wonfirstplace = "hidden"
+                    }, 2500)
+                }, 3000)
             } else {
-                this.audio.src = "/assets/images/custom/team/applause2.wav";
+
+                this.pauseAudio()
+                this.playAudio("/assets/images/custom/team/applause.wav");
             }
 
             this.audio.loop = false;
             this.audio.play();
+        } else {
+
+            this.playAudio("/assets/images/custom/team/error.wav");
+            this.audio.loop = false;
+            this.audio.play();
+
         }
     }
 
     minus(volunteer, vteam) {
-        this.audio.src = "/assets/images/custom/team/error.wav";
-        this.audio.loop = false;
-        this.audio.play();
         if (this.teamsData.find(team => { return team == vteam }).members.find(member => { return member == volunteer }).score != 0) {
+
+            if (this.teamsData.find(team => { return team == vteam }).score == this.maxGameSteps) {
+                this.winingQueue.splice(this.winingQueue.indexOf(vteam), 1)
+                localStorage.setItem("winingQueue", JSON.stringify(this.winingQueue))
+                vteam.place--;
+            }
 
             this.teamsData.find(team => { return team == vteam }).members.find(member => { return member == volunteer }).score--;
             this.teamsData.find(team => { return team == vteam }).score--;
@@ -190,11 +215,15 @@ export class GamesComponent implements OnInit {
             localStorage.setItem("scoreboard", JSON.stringify(this.teamsData))
 
 
-            this.audio.src = "/assets/images/custom/team/missed.wav";
-            // this.audio.load();
+            this.playAudio("/assets/images/custom/team/missed.wav");
             this.audio.loop = false;
             this.audio.play();
 
+        } else {
+
+            this.playAudio("/assets/images/custom/team/error.wav");
+            this.audio.loop = false;
+            this.audio.play();
         }
     }
     //#endregion
@@ -205,13 +234,13 @@ export class GamesComponent implements OnInit {
             disableClose: false
         });
 
-        this.confirmDialogRef.componentInstance.confirmMessage = 'Re-fetching? Remember that scoreboard will be reset.';
+        this.confirmDialogRef.componentInstance.confirmMessage = 'Attention!!! scoreboard will be reset.';
 
         this.confirmDialogRef.afterClosed().subscribe(result => {
             if (result) {
-
-                localStorage.removeItem("scoreboard");
-                this.audio.src = "/assets/images/custom/team/reset_teams.wav";
+                this.removeItem("scoreboard")
+                console.log(localStorage)
+                this.playAudio("/assets/images/custom/team/reset_teams.wav");
                 this.audio.loop = false;
                 this.audio.play();
                 this.teamsData = null;
@@ -220,4 +249,37 @@ export class GamesComponent implements OnInit {
             this.confirmDialogRef = null;
         });
     }
+    removeItem(key) {
+        localStorage.removeItem(key)
+        if (localStorage.getItem(key)) {
+            this.removeItem(key)
+            console.log(localStorage)
+            console.log(key)
+        }
+
+    }
+    //#region  audio
+    playAudio(src) {
+        if (!this.mute) {
+            this.pauseAudio()
+            this.audio.src = src;
+            this.audio.play()
+        }
+    }
+    pauseAudio() {
+        this.audio.pause()
+    }
+
+    muteToggle() {
+
+        this.mute = !this.mute
+        if (this.mute) {
+            this.audio.volume = 0;
+        } else {
+            this.audio.volume = 1;
+        }
+
+        localStorage.setItem("mute", JSON.stringify(this.mute))
+    }
+    //#endregion
 }

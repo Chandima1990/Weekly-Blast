@@ -1,4 +1,11 @@
 @import "src/@fuse/scss/fuse";
+@import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Langar&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Ranchers&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
 
 :host {
     position: relative;
@@ -87,7 +94,7 @@
             width: 400px;
             i,
             mat-icon {
-                font-size: 15px;
+                font-size: 20px;
                 width: 24px;
                 height: 24px;
                 min-width: 24px;
@@ -126,3 +133,41 @@
         }
     }
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+::ng-deep span,
+button,
+div,
+b,
+::ng-deep.mat-step-label {
+    font-family: "Krona One", sans-serif !important;
+}
+.mute_true {
+    position: fixed;
+    cursor: pointer;
+    background-color: #b71c1c !important;
+    right: 30px;
+    top: 80px;
+    z-index: 9999;
+    mat-icon {
+        font-size: 24px;
+    }
+}
+.mute_false {
+    position: fixed;
+    cursor: pointer;
+    background-color: #1cb72e !important;
+    right: 30px;
+    top: 80px;
+    z-index: 9999;
+    mat-icon {
+        font-size: 24px;
+    }
+}
+
