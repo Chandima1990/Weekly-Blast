@@ -49,6 +49,7 @@ export class GamesComponent implements OnInit {
         if (!this.teamsData) {
             this.loadFromCSV();
         }
+        localStorage.setItem("scoreboard", JSON.stringify(this.teamsData))
     }
 
     //#region loading teams
@@ -80,7 +81,7 @@ export class GamesComponent implements OnInit {
                     List.push({
                         team: item,
                         score: 0,
-                        place: null,
+                        place: "",
                         colspan: 1,
                         members: result.filter(a => {
                             return a.TeamName.replace(" ", "").replaceAll('"', '') == item
@@ -171,7 +172,6 @@ export class GamesComponent implements OnInit {
                 this.playAudio("/assets/images/custom/team/winningapplaude.wav");
 
                 vteam.place = this.winingQueue.length + 1
-                vteam.colspan = 2;
                 this.winingQueue.push(vteam)
                 localStorage.setItem("winingQueue", JSON.stringify(this.winingQueue))
 

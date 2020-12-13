@@ -30,7 +30,7 @@ export class ClosingComponent implements OnInit, OnDestroy {
        
         this.teamsData = JSON.parse(localStorage.getItem("scoreboard"))
         this.mute = JSON.parse(localStorage.getItem("mute")) || false
-        this.teamsData = _.orderBy(this.teamsData, ['place', 'score'], ['asc', 'desc']);
+        this.teamsData = _.orderBy(this.teamsData, ['score', 'place'], ['desc', 'asc']);
 
         this.teamsData = this.teamsData.map((team, index) => {
             return {

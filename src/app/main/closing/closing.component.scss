@@ -20,6 +20,10 @@ mat-card {
 h1 {
     font-size: 45px;
     margin-top: 8px;
+    z-index: 999;
+    color: red;
+    text-shadow: 5px 5px #000000;
+    font-weight: bold;
 }
 .place_1 {
     border: 2px solid yellow;
