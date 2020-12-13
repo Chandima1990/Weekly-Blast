@@ -9,7 +9,7 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { CommonService } from 'app/services/common.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { remove } from 'lodash';
+import { remove, take } from 'lodash';
 
 
 @Component({
@@ -33,7 +33,7 @@ export class GamesComponent implements OnInit {
     winingQueue = []
     mute: boolean;
     unsubscribeAll: Subject<any>;
-    constructor(private hc: HttpClient, private cs: CommonService, public _matDialog: MatDialog, private _fuseSidebarService: FuseSidebarService) {
+    constructor(private cs: CommonService, public _matDialog: MatDialog, private _fuseSidebarService: FuseSidebarService) {
         this.unsubscribeAll = new Subject();
         this.audio.load();
         this.leftTime = this.gameList[0].time
@@ -42,7 +42,9 @@ export class GamesComponent implements OnInit {
 
     ngOnInit() {
 
+        console.log({ "ngOnInit_B4_LS": this.teamsData })
         this.teamsData = JSON.parse(localStorage.getItem("scoreboard"))
+        console.log({ "ngOnInit_AT_LS": this.teamsData })
         this.winingQueue = JSON.parse(localStorage.getItem("winingQueue")) || []
         this.mute = JSON.parse(localStorage.getItem("mute")) || false
 
@@ -53,51 +55,51 @@ export class GamesComponent implements OnInit {
 
     //#region loading teams
     loadFromCSV() {
+        console.log({ "B4_LoadMethod": this.teamsData })
 
-        this.hc.get("/assets/user_files/groupedByTeamPickerWheel.csv",
-            { responseType: "text" }).subscribe(data => {
-                this.teamsData = data.split('\n')
-                let result = []
+        this.cs.readCSV().then(data => {
+            this.teamsData = data.split('\n')
+            let result = []
+            console.log({ "LoadMethod": this.teamsData })
+            var headers = this.teamsData[0].split(",");
+            this.teamsData.reverse()
+            this.teamsData.pop()
+            this.teamsData.reverse()
+            for (var i = 0; i < this.teamsData.length; i++) {
 
-                var headers = this.teamsData[0].split(",");
-                this.teamsData.reverse()
-                this.teamsData.pop()
-                this.teamsData.reverse()
-                for (var i = 0; i < this.teamsData.length; i++) {
+                var obj = {};
+                var currentline = this.teamsData[i].split(",");
 
-                    var obj = {};
-                    var currentline = this.teamsData[i].split(",");
-
-                    for (var j = 0; j < headers.length; j++) {
-                        obj[headers[j].replace(" ", "").replaceAll('"', '')] = currentline[j];
-                    }
-                    result.push(obj);
+                for (var j = 0; j < headers.length; j++) {
+                    obj[headers[j].replace(" ", "").replaceAll('"', '')] = currentline[j];
                 }
-                let cats = [...new Set(result.map(item => item.TeamName.replaceAll(" ", '').replaceAll('"', '')))]
+                result.push(obj);
+            }
+            let cats = [...new Set(result.map(item => item.TeamName.replaceAll(" ", '').replaceAll('"', '')))]
 
-                let List = []
-                cats.forEach((item: any) => {
-                    List.push({
-                        team: item,
-                        score: 0,
-                        place: null,
-                        colspan: 1,
-                        members: result.filter(a => {
-                            return a.TeamName.replace(" ", "").replaceAll('"', '') == item
-                        }).map(member => {
-                            return {
-                                number: member.Number.replaceAll('"', ''),
-                                team: member.TeamName.replaceAll('"', ''),
-                                name: member.Member.replaceAll('"', ''),
-                                gender: member.Gender.replaceAll('"', ''),
-                                score: 0,
-                            }
-                        }),
-                    })
+            let List = []
+            cats.forEach((item: any) => {
+                List.push({
+                    team: item,
+                    score: 0,
+                    place: null,
+                    colspan: 1,
+                    members: result.filter(a => {
+                        return a.TeamName.replace(" ", "").replaceAll('"', '') == item
+                    }).map(member => {
+                        return {
+                            number: member.Number.replaceAll('"', ''),
+                            team: member.TeamName.replaceAll('"', ''),
+                            name: member.Member.replaceAll('"', ''),
+                            gender: member.Gender.replaceAll('"', ''),
+                            score: 0,
+                        }
+                    }),
                 })
-                this.teamsData = List;
-                localStorage.setItem("scoreboard", JSON.stringify(this.teamsData))
             })
+            this.teamsData = List;
+            localStorage.setItem("scoreboard", JSON.stringify(this.teamsData))
+        })
     }
     //#endregion
 
@@ -282,4 +284,5 @@ export class GamesComponent implements OnInit {
         localStorage.setItem("mute", JSON.stringify(this.mute))
     }
     //#endregion
+
 }
