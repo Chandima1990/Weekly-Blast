@@ -14,7 +14,7 @@
                     <mat-card [class]="'place_'+(i+1)" fxFlex>
                         <mat-card-header>
                             <mat-card-title>
-                                Team {{team.team}} Place {{team.place + 1}}
+                                 {{team.team}} Place {{team.place + 1}}
                             </mat-card-title>
                             <mat-card-subtitle>
                                 {{team.team}} with {{team.score}} total points
@@ -39,16 +39,18 @@
             </mat-grid-list>
 
         </div>
-        <mat-card class="mb-8 mos" fxFlex>
+        <mat-card class="pos" id="pos" fxFlex>
             <mat-card-header>
                 <mat-card-title>
                     Person of the series
+                    <h2>{{pos.name}}</h2>
                 </mat-card-title>
                 <mat-card-subtitle>
-                    {{pos.name}} with {{pos.score}} total points
+                    with {{pos.score}} total points
                 </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
+                <img src="/assets/images/custom/team/pos.png" alt="">
             </mat-card-content>
         </mat-card>
         <div fxFlex class="mb-16">

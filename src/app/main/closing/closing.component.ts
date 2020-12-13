@@ -1,3 +1,4 @@
+import { ViewportScroller } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonService } from 'app/services/common.service';
 import * as _ from 'lodash';
@@ -18,7 +19,7 @@ export class ClosingComponent implements OnInit, OnDestroy {
     mute: boolean;
     audio = new Audio();
     unsubscribeAll: Subject<any>;
-    constructor(private cs: CommonService) {
+    constructor(private cs: CommonService, private vs: ViewportScroller) {
         this.audio.load()
         this.unsubscribeAll = new Subject();
     }
@@ -27,7 +28,7 @@ export class ClosingComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-       
+
         this.teamsData = JSON.parse(localStorage.getItem("scoreboard"))
         this.mute = JSON.parse(localStorage.getItem("mute")) || false
         this.teamsData = _.orderBy(this.teamsData, ['score', 'place'], ['desc', 'asc']);
@@ -46,11 +47,9 @@ export class ClosingComponent implements OnInit, OnDestroy {
         members = _.flatten(members)
         this.pos = _.sortBy(members, ["score", "number"]).pop()
         this.playAudio("/assets/images/custom/team/closing.wav")
-        // this.firstTeam = this.teamsData.pop()
-        // this.secondTeam = this.teamsData.pop()
-        // this.thirdTeam = this.teamsData.pop()
+        window.scrollTo(0, 500)
 
-
+        this.vs.scrollToPosition([500, 400])
     }
 
     playAudio(src) {

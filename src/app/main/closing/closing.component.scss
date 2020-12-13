@@ -126,11 +126,26 @@ h1 {
         color: black !important;
     }
 }
+.pos {
+    border: 2px solid rgba(255, 174, 0, 0.713);
+    max-width: 400px;
+    min-height: 400px;
+    background-color: rgb(211, 211, 10) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+    background-size: contain;
+    background-position: right;
+    background-blend-mode: darken;
+    img {
+        max-width: 300px;
+    }
+    h2 {
+        text-align: center;
+    }
+}
 
-// .container {
-//     display: grid;
-//     grid-template-columns: minmax(20px, auto) 1fr 1fr;
-// }
 .mat-grid-list {
     position: inherit;
 }

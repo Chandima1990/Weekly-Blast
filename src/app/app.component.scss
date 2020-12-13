@@ -1,10 +1,5 @@
 @import "src/@fuse/scss/fuse";
-@import url("https://fonts.googleapis.com/css2?family=Nerko+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Langar&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Ranchers&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
 @import url("https://fonts.googleapis.com/css2?family=Krona+One&display=swap");
 
 :host {
@@ -145,7 +140,7 @@ p,
 button,
 div,
 b,
-::ng-deep.mat-step-label {
+::ng-deep.mat-step-label,::ng-deep mat-card-title, mat-card-subtitle {
     font-family: "Krona One", sans-serif !important;
 }
 .mute_true {
@@ -171,3 +166,6 @@ b,
     }
 }
 
+html{
+    scroll-behavior: smooth;
+}
