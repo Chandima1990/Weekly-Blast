@@ -20,19 +20,7 @@ export class CommonService {
 
     readCSV(): Promise<any> {
         return new Promise((resolve, reject) => {
-
-            let headers = new HttpHeaders().
-                set("Cache-Control", `no-cache`).
-                set("Pragma", 'no-cache').
-                set("Expires", '0');
-            this.hc.get("/assets/user_files/groupedByTeamPickerWheel.csv", { responseType: 'text', headers: headers })
-                .subscribe((data) => {
-                    console.log({ "InService": data })
-
-                    resolve(data);
-                }, (err) => {
-                    console.log(err)
-                });
+            resolve(localStorage.getItem("teamData"))
         })
 
     }

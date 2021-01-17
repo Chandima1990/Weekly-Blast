@@ -23,7 +23,7 @@ export class GamesComponent implements OnInit {
 
     teamsData: any;
     wonfirstplace = "hidden";
-    gameList: any[] = require('../../../assets/user_files/game_list.json')
+    gameList: any[] = JSON.parse(localStorage.getItem("gameList")) || [];//require('../../../assets/user_files/game_list.json')
     maxGameSteps = environment.maxGameSteps;
     stopTime: Date;
     leftTime: number = 0;
@@ -36,7 +36,8 @@ export class GamesComponent implements OnInit {
     constructor(private cs: CommonService, public _matDialog: MatDialog, private _fuseSidebarService: FuseSidebarService) {
         this.unsubscribeAll = new Subject();
         this.audio.load();
-        this.leftTime = this.gameList[0].time
+        this.leftTime = this.gameList[0] ? this.gameList[0].time : 0
+        console.log(this.gameList)
         this.pauseAudio()
     }
 
@@ -59,10 +60,10 @@ export class GamesComponent implements OnInit {
         console.log({ "B4_LoadMethod": this.teamsData })
 
         this.cs.readCSV().then(data => {
-            this.teamsData = data.split('\n')
+            this.teamsData = data ? data.split('\n') : []
             let result = []
             console.log({ "LoadMethod": this.teamsData })
-            var headers = this.teamsData[0].split(",");
+            var headers = this.teamsData[0] ? this.teamsData[0].split(",") : [];
             this.teamsData.reverse()
             this.teamsData.pop()
             this.teamsData.reverse()
@@ -79,9 +80,9 @@ export class GamesComponent implements OnInit {
             let cats = [...new Set(result.map(item => item.TeamName.replaceAll(" ", '').replaceAll('"', '')))]
 
             let List = []
-            cats.forEach((item: any,index) => {
+            cats.forEach((item: any, index) => {
                 List.push({
-                    team: "Team " + (index+1),
+                    team: "Team " + (index + 1),
                     score: 0,
                     place: null,
                     colspan: 1,

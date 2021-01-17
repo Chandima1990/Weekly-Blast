@@ -1,7 +1,17 @@
 <div class="closing content" fxLayout="row" fxLayoutAlign="center center">
     <div fxLayout="column" fxLayoutAlign="center center" class="w-100-p">
-        <div fxFlex class="mb-16">
-            <button mat-raised-button class="mr-8" routerLink="/games">
+        <div fxFlex class="my-16">
+            <input type="file" #gfile (input)="UploadGame($event)" class="hidden">
+            <button mat-raised-button class="mr-8 primary" (click)="gfile.click(); ">
+                <mat-icon class="fs-24">cloud_upload</mat-icon>
+                Upload Game
+            </button>
+            <input type="file" #tfile (input)="UploadTeam($event)" class="hidden">
+            <button mat-raised-button class="mr-8 primary" (click)="tfile.click(); ">
+                <mat-icon class="fs-24">cloud_upload</mat-icon>
+                Upload Team
+            </button>
+            <button mat-raised-button class="mr-8 primary" routerLink="/games">
                 <mat-icon class="fs-24">navigate_next</mat-icon>
                 Start battle
             </button>

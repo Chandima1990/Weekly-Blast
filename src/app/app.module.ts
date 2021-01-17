@@ -50,6 +50,7 @@ import { ScorePipe } from './main/games/score.pipe';
 import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
 import { RefetchComponent } from './main/games/refetch/refetch.component';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
+import { MatSnackBar, MatSnackBarContainer, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
@@ -81,6 +82,7 @@ import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/conf
         MatStepperModule,
         MatListModule,
         FuseConfirmDialogModule,
+        MatSnackBarModule,
 
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
@@ -110,6 +112,7 @@ import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/conf
         HttpClientModule,
         CookieService,
         AuthGuard, ScorePipe,
+        MatSnackBar,
         LoginService, {
             provide: HTTP_INTERCEPTORS,
             useClass: InterceptorService,
@@ -118,7 +121,7 @@ import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/conf
         CountdownGlobalConfig
     ],
     entryComponents: [
-        FuseConfirmDialogComponent
+        FuseConfirmDialogComponent, MatSnackBarContainer
     ]
 })
 export class AppModule {
