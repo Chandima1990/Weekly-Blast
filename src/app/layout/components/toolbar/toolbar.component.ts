@@ -8,8 +8,6 @@ import { FuseConfigService } from '@fuse/services/config.service';
 import { FuseSidebarService } from '@fuse/components/sidebar/sidebar.service';
 
 import { navigation } from 'app/navigation/navigation';
-import { LoginService } from 'app/services/login.service';
-
 @Component({
     selector: 'toolbar',
     templateUrl: './toolbar.component.html',
@@ -40,7 +38,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         private _fuseConfigService: FuseConfigService,
         private _fuseSidebarService: FuseSidebarService,
         private _translateService: TranslateService,
-        private loginService: LoginService
     ) {
         // Set the defaults
         this.userStatusOptions = [
@@ -156,7 +153,6 @@ export class ToolbarComponent implements OnInit, OnDestroy {
         this._translateService.use(lang.id);
     }
     SignOut() {
-        this.loginService.SignOut();
 
     }
 }

@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'environments/environment';
-import { APIheader } from 'app/models/APIheader';
 
 @Injectable({
     providedIn: 'root'
@@ -11,16 +10,13 @@ import { APIheader } from 'app/models/APIheader';
 export class ApiService {
     constructor(private httpClient: HttpClient) { }
 
-    public get(serviceName: string, headerList: APIheader[], data: string)
+    public get(serviceName: string,  data: string)
 
     //:Observable<any> 
     {
 
         // let headers = new HttpHeaders().set("Ocp-Apim-Subscription-Key", environment.Ocp_Apim_Subscription_Key);
-        headerList.forEach(function (item) {
-
-            //   headers = headers.append(item.Key, item.value);
-        })
+     
 
         // const url = environment.apiURL + serviceName + data;
         // return this.httpClient.get(url, { headers });
