@@ -21,7 +21,7 @@ import 'hammerjs';
 
 import { FuseModule } from '@fuse/fuse.module';
 import { FuseSharedModule } from '@fuse/shared.module';
-import { FuseCountdownModule, FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
+import { FuseConfirmDialogModule, FuseCountdownModule, FuseProgressBarModule, FuseSidebarModule, FuseThemeOptionsModule } from '@fuse/components';
 
 import { fuseConfig } from 'app/fuse-config';
 
@@ -48,13 +48,16 @@ import { MatDivider, MatDividerModule } from '@angular/material/divider';
 import { ScorePipe } from './main/games/score.pipe';
 
 import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
+import { RefetchComponent } from './main/games/refetch/refetch.component';
+import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
+import { MatSnackBar, MatSnackBarContainer, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
     declarations: [
         AppComponent,
         TeamsComponent,
         GamesComponent,
-        ClosingComponent, ScorePipe
+        ClosingComponent, ScorePipe, RefetchComponent
     ],
     imports: [
         BrowserModule,
@@ -78,6 +81,8 @@ import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
         MatSliderModule,
         MatStepperModule,
         MatListModule,
+        FuseConfirmDialogModule,
+        MatSnackBarModule,
 
         // Fuse modules
         FuseModule.forRoot(fuseConfig),
@@ -107,12 +112,16 @@ import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
         HttpClientModule,
         CookieService,
         AuthGuard, ScorePipe,
+        MatSnackBar,
         LoginService, {
             provide: HTTP_INTERCEPTORS,
             useClass: InterceptorService,
             multi: true
         },
         CountdownGlobalConfig
+    ],
+    entryComponents: [
+        FuseConfirmDialogComponent, MatSnackBarContainer
     ]
 })
 export class AppModule {

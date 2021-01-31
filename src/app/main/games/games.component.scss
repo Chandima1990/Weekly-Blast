@@ -23,9 +23,6 @@ h2,
 }
 
 .Timer {
-    // position: absolute;
-    // margin-top: 550px;
-    // margin-left: 600px;
     margin-bottom: 16px;
 }
 
@@ -33,6 +30,8 @@ h2,
     padding: 8px;
     border: 1px solid #cacaca;
     border-radius: 3px;
+    max-width: 200px;
+    width: 100%;
 
     animation: team-warning 2s 1;
     -webkit-animation: team-warning 2s 1;
@@ -53,38 +52,45 @@ h2,
 @keyframes team-warning {
     from {
         opacity: 1;
+        visibility:visible;
     }
     to {
         opacity: 0;
+        visibility:hidden;
     }
 }
 
 @-webkit-keyframes team-warning {
     from {
         opacity: 1;
+        visibility:visible;
     }
     to {
-        opacity: 0;
+        opacity: 0;;
+        visibility:hidden;
     }
 }
 
+
+
 .wonanimation {    
-    width: 600px;
+    width: 700px;
     margin-left: 500px;
     margin-right: auto;
-    position: absolute;
+    position: fixed;
     z-index: 9999;
+
 }
 .hidden {
     display: none;
 }
 
 .fade-in {
-    animation: fadeIn ease 5s;
-    -webkit-animation: fadeIn ease 5s;
-    -moz-animation: fadeIn ease 5s;
-    -o-animation: fadeIn ease 5s;
-    -ms-animation: fadeIn ease 5s;
+    animation: fadeIn ease 3s;
+    -webkit-animation: fadeIn ease 3s;
+    -moz-animation: fadeIn ease 3s;
+    -o-animation: fadeIn ease 3s;
+    -ms-animation: fadeIn ease 3s;
 }
 .fade-out {
     animation: fadeOut ease 3s;

@@ -1,9 +1,12 @@
 @import "src/app/app.component.scss";
 
 mat-card {
-    width: 400px;
+    max-width: 270px;
+    min-height: 270px;
     font-size: 24px;
     line-height: 36px;
+    margin-right: 8px;
+    padding: 8px;
     i,
     mat-icon {
         font-size: 15px;
@@ -14,27 +17,143 @@ mat-card {
         line-height: 14px;
     }
 }
-mat-card.first {
+h1 {
+    font-size: 45px;
+    margin-top: 8px;
+    z-index: 999;
+    color: red;
+    text-shadow: 5px 5px #000000;
+    font-weight: bold;
+}
+.place_1 {
     border: 2px solid yellow;
+    margin-top: 80px;
+    max-width: 400px;
+    min-height: 300px;
     background-color: rgb(248, 248, 151) !important;
     color: black !important;
     mat-card-subtitle {
         color: black !important;
     }
+    background: url("~/assets/images/custom/team/1st.png") no-repeat;
+    background-size: contain;
+    background-position: right;
+    background-blend-mode: darken;
 }
-mat-card.second {
+.place_2 {
+    max-width: 400px;
+    margin-left: 270px;
+    min-height: 300px;
     border: 2px solid rgb(147, 147, 147);
     background-color: rgb(252, 252, 241) !important;
     color: black !important;
     mat-card-subtitle {
         color: black !important;
     }
+    background: url("~/assets/images/custom/team/2nd.png") no-repeat;
+    background-size: contain;
+    background-position: right;
+    background-blend-mode: darken;
 }
-mat-card.third {
+.place_3 {
+    max-width: 400px;
+    margin-right: 270px;
+    min-height: 300px;
     border: 2px solid rgb(105, 69, 3);
     background-color: rgb(255, 168, 110) !important;
     color: black !important;
     mat-card-subtitle {
         color: black !important;
     }
+    background: url("~/assets/images/custom/team/3rd.png") no-repeat;
+    background-size: contain;
+    background-position: right;
+    background-blend-mode: darken;
+}
+.place_4 {
+    border: 2px solid rgb(22, 84, 31);
+    background-color: rgb(110, 255, 115) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+}
+.place_5 {
+    border: 2px solid rgb(22, 84, 31);
+    background-color: rgb(110, 255, 115) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+}
+.place_6 {
+    border: 2px solid rgb(22, 84, 31);
+    background-color: rgb(110, 255, 115) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+}
+.place_7 {
+    border: 2px solid rgb(22, 84, 31);
+    background-color: rgb(110, 255, 115) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+}
+.place_8 {
+    border: 2px solid rgb(22, 84, 31);
+    background-color: rgb(110, 255, 115) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+}
+.place_9 {
+    border: 2px solid rgb(22, 84, 31);
+    background-color: rgb(110, 255, 115) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+}
+.place_10 {
+    border: 2px solid rgb(22, 84, 31);
+    background-color: rgb(110, 255, 115) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+}
+.pos {
+    border: 2px solid rgba(255, 174, 0, 0.713);
+    max-width: 400px;
+    min-height: 400px;
+    background-color: rgb(211, 211, 10) !important;
+    color: black !important;
+    mat-card-subtitle {
+        color: black !important;
+    }
+    background-size: contain;
+    background-position: right;
+    background-blend-mode: darken;
+    img {
+        max-width: 300px;
+    }
+    h2 {
+        text-align: center;
+    }
+}
+
+.mat-grid-list {
+    position: inherit;
+}
+.mat-grid-tile {
+    padding: 200px;
+    top: 80px;
+}
+.banner {
+    position: absolute;
+    margin-top: -150px;
 }
