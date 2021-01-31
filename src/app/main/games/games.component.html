@@ -3,6 +3,9 @@
 
     <!-- sidebar -->
     <div class="content">
+        <button type="button" [ngClass]="'mute_'+mute" mat-fab (click)="muteToggle()">
+            <mat-icon class=""> {{ mute? 'volume_up' : 'volume_off'}}</mat-icon>
+        </button>
         <fuse-sidebar name="scoreboard" position="left" lockedOpen="gt-md" folded='false'>
             <div class="content" fusePerfectScrollbar>
 
@@ -17,20 +20,29 @@
                         fxLayoutAlign="start start">
                         <div fxFlex>
                             <mat-icon fxFlex class="w-16 h-16 mr-8 material-icons-round">report_problem</mat-icon>
-                            Something wrong with teams?
+                            <p>
+                                Teams not correct?
+                            </p>
                         </div>
                         <button class="m-8 ml-16 fs-12" mat-raised-button (click)="clearCache()">
-                            <mat-icon>replay</mat-icon> Try refetch
+                            <mat-icon>replay</mat-icon>
+                            <span>
+                                Refetch
+                            </span>
                         </button>
                     </div>
                 </div>
                 <mat-card class="m-8" *ngFor="let team of teamsData">
                     <mat-card-header>
                         <mat-card-title>
-                            {{team.team}}
+                            <span>
+                                {{team.team}}
+                            </span>
                         </mat-card-title>
                         <mat-card-subtitle>
-                            Score: {{team.score}}
+                            <span>
+                                Score: {{team.score}}
+                            </span>
                         </mat-card-subtitle>
                     </mat-card-header>
                     <mat-card-content>
