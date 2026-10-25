@@ -1,0 +1,709 @@
+<html>
+
+<head>
+    <title>
+        Infosoft Weekly Blast - Readme
+    </title>
+
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://semantic-ui.com/dist/semantic.min.css">
+    <script src="https://semantic-ui.com/dist/semantic.min.js"></script>
+
+    <style>
+        .ui.message {
+            width: 600px;
+        }
+
+
+        #offline.ui.red.message {
+            background-color: #ffe8e6;
+            color: #db2828;
+            -webkit-box-shadow: 0 0 0 1px #db2828 inset, 0 0 0 0 transparent;
+            box-shadow: 0 0 0 1px #db2828 inset, 0 0 0 0 transparent;
+        }
+
+        #offline.ui.message:first-child {
+            margin-top: 0;
+        }
+
+        #offline.ui.message {
+            font-size: 1em;
+        }
+
+        #offline.ui.message {
+            position: relative;
+            min-height: 1em;
+            margin: 1em 0;
+            background: #f8f8f9;
+            padding: 1em 1.5em;
+            line-height: 1.4285em;
+            color: rgba(0, 0, 0, .87);
+            -webkit-transition: opacity .1s ease, color .1s ease, background .1s ease, -webkit-box-shadow .1s ease;
+            transition: opacity .1s ease, color .1s ease, background .1s ease, -webkit-box-shadow .1s ease;
+            transition: opacity .1s ease, color .1s ease, background .1s ease, box-shadow .1s ease;
+            transition: opacity .1s ease, color .1s ease, background .1s ease, box-shadow .1s ease, -webkit-box-shadow .1s ease;
+            border-radius: .28571429rem;
+            -webkit-box-shadow: 0 0 0 1px rgb(34 36 38 / 22%) inset, 0 0 0 0 transparent;
+            box-shadow: 0 0 0 1px rgb(34 36 38 / 22%) inset, 0 0 0 0 transparent;
+        }
+    </style>
+    <script>
+        var JqueryLoaded = false;
+        var SemanticLoaded = false;
+        JqueryLoaded = window.jQuery ? true : false;
+
+
+
+        function goToTab(tab) {
+            $('.menu .item').tab(
+                'change tab', 'second'
+            );
+
+            $('.accordion').accordion('open', 3);
+        }
+
+    </script>
+</head>
+
+<body>
+    <div class="ui one column doubling stackable grid container">
+        <div class="row"></div>
+        <div class="ui fluid card">
+            <div class="content">
+                <div class="header">Weekly Blast - Readme</div>
+                <div class="meta">Infosoft Lanka (Pvt.) Ltd.</div>
+                <div class="description">
+                    <div class="">
+                        <div class="ui top attached tabular menu">
+                            <a class="item active" data-tab="first">1. REX Rocks !!!</a>
+                            <a class="item" data-tab="second">2. Setup Environment</a>
+                            <a class="item" data-tab="third">3. Setup the Game</a>
+                            <a class="item" data-tab="fourth">4. Host the Game</a>
+                        </div>
+                        <div class="ui bottom attached tab segment active" data-tab="first">
+                            <div id="rxrcs">
+                                <h3>REX Rocks !!!</h3>
+                                <div>
+                                    <div id="offline" class="ui red message">
+                                        <div class="header">
+                                            WARNING!
+                                        </div>
+                                        Please check your internet connection and refresh. Reading experience may not be so good in
+                                        offline mode.
+                                    </div>
+                                    <div class="ui warning message">
+                                        <div class="header">
+                                            NOTE!
+                                        </div>
+                                        If you don't have the access to REX or if you want to setup the application
+                                        on
+                                        your own workspace, skip this tab and start with 2nd tab.
+                                    </div>
+                                    <div class="ui styled accordion">
+                                        <div class="active title">
+                                            <i class="dropdown icon"></i>
+                                            Login
+                                        </div>
+                                        <div class="active content">
+                                            <h4>
+                                                Login to REX
+                                            </h4>
+                                            <p>
+                                                Open any remote desktop tool you prefer to use and log into REX with
+                                                your given credentials.
+                                            </p>
+                                        </div>
+                                        <div class="title">
+                                            <i class="dropdown icon"></i>
+                                            Navigate
+                                        </div>
+                                        <div class="content">
+                                            <h4>
+                                                Navigate to Application
+                                            </h4>
+                                            <p>
+                                                Navigate to the following location in REX storage.
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i>
+                                                <i>D:\Staff\Chandima\Angular Workspace\Projects\weeklyblast-prod</i>
+                                            </p>
+                                        </div>
+                                        <div class="title">
+                                            <i class="dropdown icon"></i>
+                                            Run
+                                        </div>
+                                        <div class="content">
+                                            <h4>
+                                                Run the Game
+                                            </h4>
+                                            <p>
+                                                Just navigate to 2nd Tab, last step <i
+                                                    class="hand point right outline icon"></i> <span
+                                                    class="ui basic button" onClick="goToTab('second')">click
+                                                    here</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui bottom attached tab segment" data-tab="second">
+                            <div id="stenv">
+                                <h3>
+                                    Setup the Environment
+                                </h3>
+                                <div class="">
+                                    <div class="ui styled accordion">
+                                        <div class="active title">
+                                            <i class="dropdown icon"></i>
+                                            Node
+                                        </div>
+                                        <div class="active content">
+                                            <h4>
+                                                Installing Node
+                                            </h4>
+                                            <p>
+                                                The application runs with Node version 12.13.0
+                                            </p>
+                                            <p>
+                                                64 bit *.msi version can be downloaded <a
+                                                    href="https://nodejs.org/download/release/v12.13.0/node-v12.13.0-x64.msi">here.</a>
+                                                If any other format is the required please go <a
+                                                    href="https://nodejs.org/download/release/v12.13.0/">here</a>
+                                                and
+                                                download the format.
+                                            </p>
+                                            <p>Just go by the default installation criteria. When it asks for
+                                                installing
+                                                extra content such as python libraries, just make it a "NO"</p>
+                                        </div>
+                                        <div class="title">
+                                            <i class="dropdown icon"></i>
+                                            Angular
+                                        </div>
+                                        <div class="content">
+                                            <h4>
+                                                Installing Angular
+                                            </h4>
+                                            <p>
+                                                This application runs with angular version 8.3.23
+                                            </p>
+                                            <p>
+                                                To install angular as a global environment (Can install only in
+                                                a folder
+                                                by removing the '-g' tag. Installing globally makes your
+                                                computer can
+                                                run angular from any local location) just open a command prompt
+                                                window as an
+                                                administrator and enter the following command.
+                                            </p>
+                                            <p>
+                                            <p>
+                                                <i class="arrow right icon"></i> <i>npm i -g
+                                                    @angular/cli@8.3.23</i>
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i> Press enter and wait until the
+                                                installation is completed
+                                            </p>
+                                            </p>
+                                            <p>Now you have installed angular as a global environment in your
+                                                computer
+                                            </p>
+                                        </div>
+                                        <div class="title">
+                                            <i class="dropdown icon"></i>
+                                            Server
+                                        </div>
+                                        <div class="content">
+                                            <h4>
+                                                Installing Http-Server
+                                            </h4>
+                                            <p>
+                                                This production build can be run on node http-server
+                                            </p>
+                                            <p>
+                                                To install http-server globally, again start an administrator
+                                                command
+                                                prompt window and enter following command.
+                                            </p>
+                                            <p>
+                                            <p>
+                                                <i class="arrow right icon"></i> <i>npm i -g http-server</i>
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i>Press enter and wait until the
+                                                installation is completed
+                                            </p>
+                                            </p>
+                                            <p>Now you have installed http-server as a global node server in
+                                                your
+                                                computer.
+                                            </p>
+                                        </div>
+                                        <div class="title" id="run">
+                                            <i class="dropdown icon"></i>
+                                            Run
+                                        </div>
+                                        <div class="content">
+                                            <h4>
+                                                Run the Game
+                                            </h4>
+                                            <p>
+                                                Now the game can be run on the http-server we installed
+                                                previously.
+                                            </p>
+                                            <p>
+                                                Extract files in the WeeklyBlast zip to a folder. Open a command
+                                                prompt
+                                                window in that folder location. (Type cmd on folder path bar and
+                                                press
+                                                enter) Then enter the following command.
+                                            </p>
+                                            <p>
+                                            <p>
+                                                <i class="arrow right icon"></i> <i>http-server --gzip --proxy
+                                                    http://localhost:8080?</i>
+                                            <p>Note: If the port is busy try any other port rather than 8080</p>
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i>Press enter and wait until the
+                                                server starts. This will not take long, just a few seconds.
+                                            </p>
+                                            </p>
+                                            <p>Now open a browser and enter following url
+                                            <p>
+                                                <i class="arrow right icon">
+                                                </i>
+                                                <i>
+                                                    http://localhost:8080/
+                                                </i>
+                                            </p>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui bottom attached tab segment" data-tab="third">
+                            <div id="stgm">
+                                <h3>
+                                    Setup the Game
+                                </h3>
+                                <div class="">
+                                    <div class="ui styled accordion">
+                                        <div class="active title">
+                                            <i class="dropdown icon"></i>
+                                            Questions
+                                        </div>
+                                        <div class="active content">
+                                            <h4>
+                                                Adding the questions
+                                            </h4>
+                                            <p>
+                                                Questions can be added as a JSON file.
+                                            </p>
+                                            <p>
+                                                Open the WeeklyBlast folder we just extracted. navigate here.
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i> <i>src\assets\user_files</i>
+                                            </p>
+                                            <p>
+                                                Find the .json file named game_list.json (This JSON can be
+                                                stored
+                                                anywhere and upload when running the application)
+                                            </p>
+                                            <p>
+                                                Open the JSON in a text editor
+                                            </p>
+                                        </div>
+                                        <div class="title">
+                                            <i class="dropdown icon"></i>
+                                            JSON
+                                        </div>
+                                        <div class="content">
+                                            <h4>
+                                                JSON explanation
+                                            </h4>
+                                            <p>
+                                                Games can be conducted in two types. Each team answers to the
+                                                question
+                                                separately or open
+                                                for any team to answer.
+                                            </p>
+                                            <div class="ui list">
+                                                <div class="item">
+                                                    <i class="key icon"></i>
+                                                    <div class="content">
+                                                        <div class="header">game_list</div>
+                                                        <div class="description">JSON tree structure</div>
+                                                        <div class="list">
+                                                            <div class="item">
+                                                                <i class="key icon"></i>
+                                                                <div class="content">
+                                                                    <div class="header">name (Mandatory)</div>
+                                                                    <div class="description">name of the
+                                                                        question shown
+                                                                        in headers</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="item">
+                                                                <i class="key icon"></i>
+                                                                <div class="content">
+                                                                    <div class="header">operatingmode
+                                                                        (Mandatory)</div>
+                                                                    <div class="description">Specify the game
+                                                                        operating
+                                                                        type by "open" or "team"</div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="item">
+                                                                <i class="key icon"></i>
+                                                                <div class="content">
+                                                                    <div class="header">rules (Optional)</div>
+                                                                    <div class="description">Specify the
+                                                                        rules as a comma separated string of the
+                                                                        game
+                                                                        per question, if
+                                                                        any. otherwise leave an empty array.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="item">
+                                                                <i class="key icon"></i>
+                                                                <div class="content">
+                                                                    <div class="header">subteamgame (Mandatory)
+                                                                    </div>
+                                                                    <div class="description">Specify the
+                                                                        question and
+                                                                        answer heading, if any. And question
+                                                                        contents if
+                                                                        any</div>
+                                                                    <div class="list">
+                                                                        <div class="item">
+                                                                            <i class="key icon"></i>
+                                                                            <div class="content">
+                                                                                <div class="header">team
+                                                                                    (Mandatory)
+                                                                                </div>
+                                                                                <div class="description">
+                                                                                    <p>
+                                                                                        <i class="arrow right icon"></i>
+                                                                                        If the "operatingmode"
+                                                                                        was
+                                                                                        "open"
+                                                                                        then
+                                                                                        specify question or
+                                                                                        answer heading if any,
+                                                                                        otherwise
+                                                                                        just leave as "Question"
+                                                                                        and
+                                                                                        "Answer"
+                                                                                    </p>
+                                                                                    <p>
+                                                                                        <i class="arrow right icon"></i>
+                                                                                        if "operatingmode" was
+                                                                                        team then
+                                                                                        specify the team names,
+                                                                                        if any.
+                                                                                        (Remember to have the
+                                                                                        same
+                                                                                        number of
+                                                                                        teams you are planning
+                                                                                        for the
+                                                                                        game)
+                                                                                    </p>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="item">
+                                                                            <i class="key icon"></i>
+                                                                            <div class="content">
+                                                                                <div class="header">image
+                                                                                    (Optional)
+                                                                                </div>
+                                                                                <div class="description">
+                                                                                    Question/Answer
+                                                                                    or team images as relevant,
+                                                                                    if any.
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="item">
+                                                                            <i class="key icon"></i>
+                                                                            <div class="content">
+                                                                                <div class="header">answer
+                                                                                    (Optional)
+                                                                                </div>
+                                                                                <div class="description">Answer
+                                                                                    by text.
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="item">
+                                                                            <i class="key icon"></i>
+                                                                            <div class="content">
+                                                                                <div class="header">content
+                                                                                    (Optional)
+                                                                                </div>
+                                                                                <div class="description">If the
+                                                                                    question
+                                                                                    has a video add this key
+                                                                                    with
+                                                                                    "videoplayback" as the
+                                                                                    value.
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="item">
+                                                                            <i class="key icon"></i>
+                                                                            <div class="content">
+                                                                                <div class="header">src
+                                                                                    (Conditional)
+                                                                                </div>
+                                                                                <div class="description">If
+                                                                                    "content"
+                                                                                    key has "videoplayback" as
+                                                                                    value
+                                                                                    specify the video file path
+                                                                                    stored
+                                                                                    in
+                                                                                    user files folder.
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="item">
+                                                                <i class="key icon"></i>
+                                                                <div class="content">
+                                                                    <div class="header">time (Mandatory)</div>
+                                                                    <div class="description">Specify the time
+                                                                        taken for
+                                                                        the game by seconds</div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <p>
+                                                JSON example is already in the user files folder.
+                                            </p>
+                                        </div>
+                                        <div class=" title">
+                                            <i class="dropdown icon"></i>
+                                            Contents
+                                        </div>
+                                        <div class=" content">
+                                            <h4>
+                                                Adding the Contents
+                                            </h4>
+                                            <p>
+                                                Contents required to perform the game can be stored in the
+                                                following
+                                                path.
+                                            <p>
+                                                <i class="arrow right icon"></i> <i>src\assets\user_files</i>
+                                            </p>
+                                            </p>
+                                            <p>
+                                                Double check the file names with the JSON you just edited.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ui bottom attached tab segment" data-tab="fourth">
+                            <div id="hstgm">
+                                <h3>
+                                    Host the Game
+                                </h3>
+                                <div class="">
+                                    <div class="ui styled accordion">
+                                        <div class="active title">
+                                            <i class="dropdown icon"></i>
+                                            Team
+                                        </div>
+                                        <div class="active content">
+                                            <h4>
+                                                Adding the teams
+                                            </h4>
+                                            <p><i class="arrow right icon"></i>
+                                                Navigate to the application which is already running in your
+                                                browser.
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                Navigate to /teams by clicking on the link upper right
+                                                corner.
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                Add the people available for the session on the right panel by
+                                                clicking <i class="plus icon"></i>
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                After adding all the participants specify the number of teams
+                                                you
+                                                have planned for the game, as stated in the JSON.
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                Then click start. This will divide all in to teams randomly.
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                Then click download as *.csv and download the file to your
+                                                computer
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                Now click the "Upload Team" blue color button and upload the
+                                                *.csv file
+                                                downloaded previously.
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                Now click the "Upload Game" blue color button and upload the
+                                                *.json file
+                                                prepared previously.
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                Navigate to /games by clicking "Start Battle" button or Games on
+                                                the
+                                                upper right corner.
+                                            </p>
+                                        </div>
+                                        <div class=" title">
+                                            <i class="dropdown icon"></i>
+                                            Game
+                                        </div>
+                                        <div class=" content">
+                                            <h4>
+                                                Hosting the game
+                                            </h4>
+                                            <p><i class="arrow right icon"></i>Check the teams on the scoreboard
+                                                on the
+                                                left corner, first thing. If something is wrong with teams there
+                                                will be
+                                                a yellow refresh button on the top of the scoreboard. Click and
+                                                refetch
+                                                the teams. This button will be removed in 30 seconds if you did
+                                                not take
+                                                any action. If button is removed before you address it, just
+                                                refresh the
+                                                browser to take the button back to visible.
+                                            </p>
+                                            <p><i class="arrow right icon"></i>Everything is fine with the teams
+                                                now you
+                                                can perform the game as you planned.
+                                            </p>
+                                            <p><i class="arrow right icon"></i>To start the timer for a game
+                                                click on <i class="play icon"></i>
+                                            </p>
+                                            <p><i class="arrow right icon"></i>To stop the timer click on <i
+                                                    class="stop icon"></i>
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                To pause the timer click on <i class="pause icon"></i>
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                To restart the timer click on <i class="undo icon"></i>
+                                            </p>
+                                            <p><i class="arrow right icon"></i>
+                                                If the sounds are too disturbing, you can always toggle the
+                                                sounds by
+                                                clicking
+                                                on <i class="volume up icon"></i> upper right corner
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i>
+                                                When someone gains a point the point can be added to that person
+                                                on the
+                                                scoreboard by clicking <i class="plus icon"></i>
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i>
+                                                When someone looses a point the point can be deducted from that
+                                                person
+                                                on the
+                                                scoreboard by clicking <i class="minus icon"></i>
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i>
+                                                Each person's current score can be seen on there name as a badge
+                                                and
+                                                team score also can be seen near the team name.
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i>
+                                                When a team reaches the goal score usually they can be specified
+                                                as won
+                                                as number 1.
+                                                But this can be customized as the game host's preference. So if
+                                                the host
+                                                is planning to deduct score even after a team won the 1st place,
+                                                that is
+                                                also possible.
+                                            </p>
+                                        </div>
+
+                                        <div class=" title">
+                                            <i class="dropdown icon"></i>
+                                            Closing
+                                        </div>
+                                        <div class=" content">
+                                            <h4>
+                                                Closing ceremony
+                                            </h4>
+                                            <p>
+                                                Teams will be placed in positions as they scored in the game.
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i>
+                                                Places will be calculated by number of points acquired. If two
+                                                teams are
+                                                having the same score the first team, who came to that score
+                                                will be
+                                                prioritized.
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i>
+                                                Person of the series will be the person who has the most points
+                                                acquired
+                                                throughout the game.
+                                            </p>
+                                            <p>
+                                                <i class="arrow right icon"></i>
+                                                Finally add the participants supposed to be in the next session
+                                                and
+                                                click spin for choosing next host for the game.
+                                            </p>
+                                            <h3>
+                                                Happy Gaming Guys!
+                                            </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+</body>
+<script>
+
+
+    if (!JqueryLoaded) {
+        document.getElementById('offline').hidden = false;
+    } else {
+        document.getElementById('offline').hidden = true;
+    }
+    $('.menu .item').tab();
+    $('.accordion').accordion();
+</script>
+
+</html>

@@ -9,16 +9,19 @@ import { ClosingComponent } from './main/closing/closing.component';
 
 
 const routes: Routes = [
-  { path: '', component: TeamsComponent },
-  { path: 'games', component: GamesComponent },
-  { path: 'closing', component: ClosingComponent },
-  { path: 'teams', component: TeamsComponent },
+    {
+        path: '',
+        component: TeamsComponent
+    },
+    { path: 'games', component: GamesComponent },
+    { path: 'closing', component: ClosingComponent },
+    { path: 'teams', component: TeamsComponent },
 ]
 @NgModule({
-  declarations: [],
-  imports: [RouterModule.forRoot(routes,{
-    anchorScrolling: 'enabled'
-  })],
-  exports: [RouterModule]
+    declarations: [],
+    imports: [RouterModule.forRoot(routes, {
+        anchorScrolling: 'enabled'
+    })],
+    exports: [RouterModule]
 })
 export class AppRoutingModule { }

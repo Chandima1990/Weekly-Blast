@@ -40,6 +40,8 @@ import { CountdownGlobalConfig, CountdownModule } from 'ngx-countdown';
 import { RefetchComponent } from './main/games/refetch/refetch.component';
 import { FuseConfirmDialogComponent } from '@fuse/components/confirm-dialog/confirm-dialog.component';
 import { MatSnackBar, MatSnackBarContainer, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [
@@ -86,7 +88,9 @@ import { MatSnackBar, MatSnackBarContainer, MatSnackBarModule } from '@angular/m
         //this is a test comment
         //AppRoutingModule
 
-        CountdownModule
+        CountdownModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+
 
 
     ],

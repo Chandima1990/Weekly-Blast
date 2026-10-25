@@ -1,5 +1,9 @@
 <div class="closing content" fxLayout="row" fxLayoutAlign="center center">
     <div fxLayout="column" fxLayoutAlign="center center" class="w-100-p">
+        <a mat-raised-button class="mr-8 primary" href="/Readme.html" target="blank">
+            <mat-icon class="fs-24">chrome_reader_mode</mat-icon>
+            How to Use this
+        </a>
         <div fxFlex class="my-16">
             <input type="file" #gfile (input)="UploadGame($event)" class="hidden">
             <button mat-raised-button class="mr-8 primary" (click)="gfile.click(); ">
